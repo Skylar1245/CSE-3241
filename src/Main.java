@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
 public class Main {
-    
+
     private static void PrintMainMenu() {
         System.out.print(
                 "Main Menu:\n\n1. Search\n2. Check Inventory\n3. View Rented Items\n4. Delete Existing Entry\n5. Register Item Return\n6. Add New Entry\n7. Edit Existing Entry\n8. Exit\nPlease enter the number of the option you would like to select:");
     }
 
     public static void main(String[] args) {
-        
+
         Scanner scanner = new Scanner(System.in);
         int userChoice = 0;
         while (userChoice != 8) {
@@ -17,8 +17,29 @@ public class Main {
             userChoice = Integer.parseInt(userInput);
             Utility.clearTerminal();
             switch (userChoice) {
-                case 1:   
-                    Search.SearchMenu(scanner);
+                case 1:
+                    Search.Menu(scanner);
+                    break;
+                case 2:
+                    CheckInventory.Menu(scanner);
+                    break;
+                case 3:
+                    ViewRentedItems.Menu(scanner);
+                    break;
+                case 4:
+                    DeleteExistingEntry.Menu(scanner);
+                    break;
+                case 5:
+                    RegisterItemReturn.Menu(scanner);
+                    break;
+                case 6:
+                    AddNewEntry.Menu(scanner);
+                    break;
+                case 7:
+                    EditExistingEntry.Menu(scanner);
+                    break;
+                case 8:
+                    System.out.println("Exiting...");
                     break;
                 default:
                     System.out.println("Invalid input. Please try again.");
