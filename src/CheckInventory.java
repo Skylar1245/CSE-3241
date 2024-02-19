@@ -13,6 +13,13 @@ public class CheckInventory {
 
         String userInput = scanner.nextLine();
         int userChoice = Integer.parseInt(userInput);
-        System.out.println("You chose: " + userChoice);
+
+        if (userChoice == 1) {
+            System.out.println("You chose: Check One Warehouse");
+        } else if (userChoice == 2) {
+            System.out.println("You chose: Check All Warehouses");
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
     }
 }
