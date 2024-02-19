@@ -15,7 +15,7 @@ public class DeleteExistingEntry {
         int userChoice = Integer.parseInt(userInput);
 
         if (userChoice == 1) {
-            System.out.println("You chose: Member");
+            DeleteMember(scanner);
         } else if (userChoice == 2) {
             System.out.println("You chose: Drone");
         } else if (userChoice == 3) {
@@ -33,5 +33,9 @@ public class DeleteExistingEntry {
         } else {
             System.out.println("Invalid input. Please try again.");
         }
+    }
+
+    private static void DeleteMember(Scanner scanner) {
+
     }
 }

@@ -1,6 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    public class Member {
+        public String fname;
+        public String lname;
+        public String address;
+        public String phone;
+        public String email;
+        public String startDate;
+        public String warehouseDistance;
+    }
+
+    public static List<Member> members;
 
     private static void PrintMainMenu() {
         System.out.print(
@@ -8,7 +21,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-
+        members = new ArrayList<Member>();
         Scanner scanner = new Scanner(System.in);
         int userChoice = 0;
         while (userChoice != 8) {

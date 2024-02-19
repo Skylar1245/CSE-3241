@@ -15,7 +15,7 @@ public class AddNewEntry {
         int userChoice = Integer.parseInt(userInput);
 
         if (userChoice == 1) {
-            System.out.println("You chose: Member");
+            AddMember(scanner);
         } else if (userChoice == 2) {
             System.out.println("You chose: Drone");
         } else if (userChoice == 3) {
@@ -32,6 +32,46 @@ public class AddNewEntry {
             System.out.println("You chose: Employee");
         } else {
             System.out.println("Invalid input. Please try again.");
+        }
+    }
+
+    private static void AddMember(Scanner scanner) {
+        System.out.println("Add Member Menu\nPlease enter the following information:");
+        System.out.print("First Name: ");
+        String fname = scanner.nextLine();
+        System.out.print("Last Name: ");
+        String lname = scanner.nextLine();
+        System.out.print("Address: ");
+        String address = scanner.nextLine();
+        System.out.print("Phone: ");
+        String phone = scanner.nextLine();
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        System.out.print("Start Date: ");
+        String startDate = scanner.nextLine();
+        System.out.print("Warehouse Distance: ");
+        String warehouseDistance = scanner.nextLine();
+        Utility.clearTerminal();
+        System.out.println("Please review the following information:");
+        System.out.println("First Name: " + fname + "\nLast Name: " + lname + "\nAddress: " + address + "\nPhone: "
+                + phone
+                + "\nEmail: " + email + "\nStart Date: " + startDate + "\nWarehouse Distance: " + warehouseDistance);
+        System.out.print("Is this information correct? (Y/N): ");
+        String userInput = scanner.nextLine();
+        if (userInput.equalsIgnoreCase("Y")) {
+            Main.Member member = new Main().new Member();
+            member.fname = fname;
+            member.lname = lname;
+            member.address = address;
+            member.phone = phone;
+            member.email = email;
+            member.startDate = startDate;
+            member.warehouseDistance = warehouseDistance;
+            Main.members.add(member);
+            Utility.clearTerminal();
+            System.out.println("Member added successfully!");
+        } else {
+            AddMember(scanner);
         }
     }
 }
