@@ -10,10 +10,7 @@ public class DeleteExistingEntry {
         Utility.clearTerminal();
         System.out.print(
                 "Delete Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
-
-        String userInput = scanner.nextLine();
-        int userChoice = Integer.parseInt(userInput);
-
+        int userChoice = Utility.toInt(scanner.nextLine());
         if (userChoice == 1) {
             DeleteMember(scanner);
         } else if (userChoice == 2) {
@@ -41,7 +38,7 @@ public class DeleteExistingEntry {
         System.out.print("Are you sure you want to delete member with ID: " + personID + "? (Y/N): ");
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Y")) {
-            boolean r = Main.People.removeIf(person -> person.id_no == Integer.parseInt(personID));
+            boolean r = Main.People.removeIf(person -> person.id_no == Utility.toInt(personID));
             if (r) {
                 System.out.println("Member with ID: " + personID + " has been deleted.");
             } else {

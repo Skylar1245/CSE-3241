@@ -1,10 +1,11 @@
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
+
+import db.ManageData;
 import db.Person;
 
 public class Main {
-    public static List<Person> People;
+    public static ArrayList<Person> People;
 
     private static void PrintMainMenu() {
         System.out.print(
@@ -12,13 +13,12 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        People = new ArrayList<Person>();
+        People = ManageData.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);
         int userChoice = 0;
         while (userChoice != 8) {
             PrintMainMenu();
-            String userInput = scanner.nextLine();
-            userChoice = Integer.parseInt(userInput);
+            userChoice = Utility.toInt(scanner.nextLine());
             Utility.clearTerminal();
             switch (userChoice) {
                 case 1:
@@ -50,6 +50,7 @@ public class Main {
                     break;
             }
         }
+        ManageData.WriteToFiles(People);
         scanner.close();
     }
 }

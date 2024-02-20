@@ -11,4 +11,9 @@ public class Person {
     public Employee employeeInfo;
     public boolean isCommunityMember;
     public CommunityMember communityMemberInfo;
+
+    public String toString() {
+        return "Name: " + fname + " " + lname + "\nAddress: " + address + "\nPhone: " + phone + "\nEmail: " + email
+                + "\nID: " + id_no;
+    }
 }

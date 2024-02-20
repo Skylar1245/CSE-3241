@@ -1,9 +1,10 @@
+/**
+ * Holds general utility methods
+ */
 public class Utility {
-
-    public Utility() {
-        // This is a utility class, so we don't need to instantiate it.
-    }
-
+    /**
+     * Clears the terminal
+     */
     public static void clearTerminal() {
         try {
             if (System.getProperty("os.name").contains("Windows")) {
@@ -13,6 +14,18 @@ public class Utility {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    /**
+     * Converts a string to an integer
+     * @param x
+     * @return -1 on failure
+     */
+    public static int toInt(String x) {
+        try {
+            return Integer.parseInt(x);
+        } catch (NumberFormatException e) {
+            return -1;
         }
     }
 }

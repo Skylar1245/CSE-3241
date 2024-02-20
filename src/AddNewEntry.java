@@ -12,10 +12,7 @@ public class AddNewEntry {
         Utility.clearTerminal();
         System.out.print(
                 "New Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
-
-        String userInput = scanner.nextLine();
-        int userChoice = Integer.parseInt(userInput);
-
+        int userChoice = Utility.toInt(scanner.nextLine());
         if (userChoice == 1) {
             AddMember(scanner);
         } else if (userChoice == 2) {
@@ -63,9 +60,9 @@ public class AddNewEntry {
             member.fname = fname;
             member.lname = lname;
             member.address = address;
-            member.phone = Integer.parseInt(phone);
+            member.phone = Utility.toInt(phone);
             member.email = email;
-            member.id_no = Integer.parseInt(id);
+            member.id_no = Utility.toInt(id);
             Main.People.add(member);
             Utility.clearTerminal();
             System.out.println("Member added successfully!");

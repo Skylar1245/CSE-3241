@@ -10,9 +10,7 @@ public class RegisterItemReturn {
         Utility.clearTerminal();
         System.out.print(
                 "\n\nPlease enter the number of the option you would like to select:");
-
-        String userInput = scanner.nextLine();
-        int userChoice = Integer.parseInt(userInput);
+        int userChoice = Utility.toInt(scanner.nextLine());
         System.out.println("You chose: " + userChoice);
     }
 }

@@ -13,12 +13,11 @@ public class Search {
         System.out.print(
                 "Search Menu:\n\n1. All\n2. Members\n3. Drones\n4. Equipment\n5. Rental\n6. History\n7. Manufacturer\n8. Ratings\n9. Expiration Dates\n10. Employee\n11. Asset Repair\n\nPlease enter the number of the option you would like to select:");
 
-        String userInput = scanner.nextLine();
-        int userChoice = Integer.parseInt(userInput);
+        int userChoice = Utility.toInt(scanner.nextLine());
         if (userChoice == 1) {
             System.out.println("You chose: All");
         } else if (userChoice == 2) {
-            SearchMembers(scanner);
+            SearchPeople(scanner);
         } else if (userChoice == 3) {
             System.out.println("You chose: Drones");
         } else if (userChoice == 4) {
@@ -42,19 +41,26 @@ public class Search {
         }
     }
 
-    private static void SearchMembers(Scanner scanner) {
+    private static void SearchPeople(Scanner scanner) {
         System.out.print("Please enter the member's ID:");
         String id = scanner.nextLine();
         int id_no = Integer.parseInt(id);
+        Person p = findPerson(scanner, id_no);
+        p.toString();
+        System.out.print("Press enter to continue...");
+        scanner.nextLine();
+        Utility.clearTerminal();
+    }
+
+    public static Person findPerson(Scanner scanner, int id_no) {
         Utility.clearTerminal();
         for (Person person : Main.People) {
             if (person.id_no == id_no) {
                 System.out.println("Name: " + person.fname + " " + person.lname + "\nAddress: " + person.address
                         + "\nPhone: " + person.phone + "\nEmail: " + person.email + "\nID: " + person.id_no);
+                return person;
             }
         }
-        System.out.print("Press enter to continue...");
-        scanner.nextLine();
-        Utility.clearTerminal();
+        return new Person();
     }
 }
