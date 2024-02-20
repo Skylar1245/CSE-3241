@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Handles the deletion of existing entries
+ */
 public class DeleteExistingEntry {
-
-    public DeleteExistingEntry() {
-        // Auto-generated constructor stub
-    }
-
+    /**
+     * Prints the delete entry menu
+     * 
+     * @param scanner
+     */
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
@@ -32,6 +35,11 @@ public class DeleteExistingEntry {
         }
     }
 
+    /**
+     * Deletes a member from the database
+     * 
+     * @param scanner
+     */
     private static void DeleteMember(Scanner scanner) {
         System.out.println("Please enter the member's ID:");
         String personID = scanner.nextLine();

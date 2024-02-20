@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Handles the viewing of rented items
+ */
 public class ViewRentedItems {
-
-    public ViewRentedItems() {
-        // Auto-generated constructor stub
-    }
-
+    /**
+     * Prints the menu for viewing rented items
+     * 
+     * @param scanner
+     */
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(

@@ -1,12 +1,21 @@
 package db;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.PrintWriter;
 
+/**
+ * Manages the data
+ */
 public class ManageData {
-    
+    /**
+     * Reads from the files
+     * 
+     * @return ArrayList<Person>
+     * @throws FileNotFoundException
+     */
     public static ArrayList<Person> ReadFromFiles() {
         File file = new File("src/data/people.txt");
         Scanner scanner = null;
@@ -16,7 +25,7 @@ public class ManageData {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        while (scanner != null && scanner.hasNextLine()) { 
+        while (scanner != null && scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] data = line.split(",");
             Person person = new Person();
@@ -31,12 +40,19 @@ public class ManageData {
         return people;
     }
 
-    public static void WriteToFiles(ArrayList<Person> people) { 
+    /**
+     * Writes to the file
+     * 
+     * @param people
+     * @throws FileNotFoundException
+     */
+    public static void WriteToFiles(ArrayList<Person> people) {
         File file = new File("src/data/people.txt");
         try {
             PrintWriter output = new PrintWriter(file);
             for (Person person : people) {
-                output.println(person.id_no + "," + person.fname + "," + person.lname + "," + person.address + "," + person.phone + "," + person.email);
+                output.println(person.id_no + "," + person.fname + "," + person.lname + "," + person.address + ","
+                        + person.phone + "," + person.email);
             }
             output.close();
         } catch (FileNotFoundException e) {

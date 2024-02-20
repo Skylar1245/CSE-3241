@@ -1,13 +1,16 @@
 import java.util.Scanner;
-
 import db.Person;
 
+/**
+ * Handles searching
+ */
 public class Search {
 
-    public Search() {
-        // Auto-generated constructor stub
-    }
-
+    /**
+     * Prints the search menu
+     * 
+     * @param scanner
+     */
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
@@ -41,6 +44,11 @@ public class Search {
         }
     }
 
+    /**
+     * Searches for a person by ID
+     * 
+     * @param scanner
+     */
     private static void SearchPeople(Scanner scanner) {
         System.out.print("Please enter the member's ID:");
         String id = scanner.nextLine();
@@ -52,6 +60,13 @@ public class Search {
         Utility.clearTerminal();
     }
 
+    /**
+     * Finds a person by ID
+     * 
+     * @param scanner
+     * @param id_no
+     * @return
+     */
     public static Person findPerson(Scanner scanner, int id_no) {
         Utility.clearTerminal();
         for (Person person : Main.People) {

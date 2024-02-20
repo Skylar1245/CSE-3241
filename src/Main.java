@@ -6,12 +6,17 @@ import db.Person;
 
 public class Main {
     public static ArrayList<Person> People;
-
+    /**
+     * Prints the main menu
+     */
     private static void PrintMainMenu() {
         System.out.print(
                 "Main Menu:\n\n1. Search\n2. Check Inventory\n3. View Rented Items\n4. Delete Existing Entry\n5. Register Item Return\n6. Add New Entry\n7. Edit Existing Entry\n8. Exit\nPlease enter the number of the option you would like to select:");
     }
-
+    /**
+     * Main method loop
+     * @param args
+     */
     public static void main(String[] args) {
         People = ManageData.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);

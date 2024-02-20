@@ -2,12 +2,16 @@ import java.util.Scanner;
 
 import db.Person;
 
+/**
+ * This class contains the menu for adding a new entry to the database
+ * 
+ */
 public class AddNewEntry {
-
-    public AddNewEntry() {
-        // Auto-generated constructor stub
-    }
-
+    /**
+     * Displays the menu for adding a new entry to the database
+     * 
+     * @param scanner
+     */
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
@@ -34,6 +38,11 @@ public class AddNewEntry {
         }
     }
 
+    /**
+     * Adds a new member to the database
+     * 
+     * @param scanner
+     */
     private static void AddMember(Scanner scanner) {
         System.out.println("Add Member Menu\nPlease enter the following information:");
         System.out.print("First Name: ");

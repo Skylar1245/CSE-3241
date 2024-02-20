@@ -1,12 +1,15 @@
 import java.util.Scanner;
 import db.Person;
 
+/**
+ * Methods for editing existing entries
+ */
 public class EditExistingEntry {
-
-    public EditExistingEntry() {
-        // Auto-generated constructor stub
-    }
-
+    /**
+     * Prints the edit menu
+     * 
+     * @param scanner
+     */
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
@@ -42,7 +45,8 @@ public class EditExistingEntry {
         int id_no = Utility.toInt(id);
         Utility.clearTerminal();
         Person p = Search.findPerson(scanner, id_no);
-        System.out.print("Edit Menu:\n\n1. First Name\n2. Last Name\n3. Address\n4. Phone\n5. Email\n\nPlease enter the number of the option you would like to select:");
+        System.out.print(
+                "Edit Menu:\n\n1. First Name\n2. Last Name\n3. Address\n4. Phone\n5. Email\n\nPlease enter the number of the option you would like to select:");
         String inputString = scanner.nextLine();
         int userInput = Utility.toInt(inputString);
         switch (userInput) {

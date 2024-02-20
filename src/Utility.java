@@ -16,8 +16,10 @@ public class Utility {
             e.printStackTrace();
         }
     }
+
     /**
      * Converts a string to an integer
+     * 
      * @param x
      * @return -1 on failure
      */

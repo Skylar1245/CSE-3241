@@ -1,11 +1,14 @@
 import java.util.Scanner;
 
+/**
+ * Methods for reading the inventory
+ */
 public class CheckInventory {
-
-    public CheckInventory() {
-        // Auto-generated constructor stub
-    }
-
+    /**
+     * Prints the inventory menu
+     * 
+     * @param scanner
+     */
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
