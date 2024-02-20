@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import db.Person;
+
 public class AddNewEntry {
 
     public AddNewEntry() {
@@ -47,27 +49,24 @@ public class AddNewEntry {
         String phone = scanner.nextLine();
         System.out.print("Email: ");
         String email = scanner.nextLine();
-        System.out.print("Start Date: ");
-        String startDate = scanner.nextLine();
-        System.out.print("Warehouse Distance: ");
-        String warehouseDistance = scanner.nextLine();
+        System.out.print("id Number: ");
+        String id = scanner.nextLine();
         Utility.clearTerminal();
         System.out.println("Please review the following information:");
         System.out.println("First Name: " + fname + "\nLast Name: " + lname + "\nAddress: " + address + "\nPhone: "
                 + phone
-                + "\nEmail: " + email + "\nStart Date: " + startDate + "\nWarehouse Distance: " + warehouseDistance);
+                + "\nEmail: " + email + "\nid Number: " + id);
         System.out.print("Is this information correct? (Y/N): ");
         String userInput = scanner.nextLine();
         if (userInput.equalsIgnoreCase("Y")) {
-            Main.Member member = new Main().new Member();
+            Person member = new Person();
             member.fname = fname;
             member.lname = lname;
             member.address = address;
-            member.phone = phone;
+            member.phone = Integer.parseInt(phone);
             member.email = email;
-            member.startDate = startDate;
-            member.warehouseDistance = warehouseDistance;
-            Main.members.add(member);
+            member.id_no = Integer.parseInt(id);
+            Main.People.add(member);
             Utility.clearTerminal();
             System.out.println("Member added successfully!");
         } else {

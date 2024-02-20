@@ -36,6 +36,19 @@ public class DeleteExistingEntry {
     }
 
     private static void DeleteMember(Scanner scanner) {
-
+        System.out.println("Please enter the member's ID:");
+        String personID = scanner.nextLine();
+        System.out.print("Are you sure you want to delete member with ID: " + personID + "? (Y/N): ");
+        String confirm = scanner.nextLine();
+        if (confirm.equalsIgnoreCase("Y")) {
+            boolean r = Main.People.removeIf(person -> person.id_no == Integer.parseInt(personID));
+            if (r) {
+                System.out.println("Member with ID: " + personID + " has been deleted.");
+            } else {
+                System.out.println("Member with ID: " + personID + " not found.");
+            }
+        } else {
+            System.out.println("Aborted.");
+        }
     }
 }

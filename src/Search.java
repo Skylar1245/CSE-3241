@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import db.Person;
+
 public class Search {
 
     public Search() {
@@ -16,7 +18,7 @@ public class Search {
         if (userChoice == 1) {
             System.out.println("You chose: All");
         } else if (userChoice == 2) {
-            System.out.println("You chose: Members");
+            SearchMembers(scanner);
         } else if (userChoice == 3) {
             System.out.println("You chose: Drones");
         } else if (userChoice == 4) {
@@ -38,5 +40,21 @@ public class Search {
         } else {
             System.out.println("Invalid input. Please try again.");
         }
+    }
+
+    private static void SearchMembers(Scanner scanner) {
+        System.out.print("Please enter the member's ID:");
+        String id = scanner.nextLine();
+        int id_no = Integer.parseInt(id);
+        Utility.clearTerminal();
+        for (Person person : Main.People) {
+            if (person.id_no == id_no) {
+                System.out.println("Name: " + person.fname + " " + person.lname + "\nAddress: " + person.address
+                        + "\nPhone: " + person.phone + "\nEmail: " + person.email + "\nID: " + person.id_no);
+            }
+        }
+        System.out.print("Press enter to continue...");
+        scanner.nextLine();
+        Utility.clearTerminal();
     }
 }
