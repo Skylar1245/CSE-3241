@@ -28,13 +28,13 @@ public class DataManager {
         while (scanner != null && scanner.hasNextLine()) {
             String line = scanner.nextLine();
             String[] data = line.split(",");
-            Person person = new Person();
-            person.id_no = Integer.parseInt(data[0]);
-            person.fname = data[1];
-            person.lname = data[2];
-            person.address = data[3];
-            person.phone = Integer.parseInt(data[4]);
-            person.email = data[5];
+            int id_no = Integer.parseInt(data[0]);
+            String fname = data[1];
+            String lname = data[2];
+            String address = data[3];
+            int phone = Integer.parseInt(data[4]);
+            String email = data[5];
+            Person person = new Person(id_no, phone, fname, lname, address, email, false, false);
             people.add(person);
         }
         return people;

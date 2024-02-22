@@ -76,6 +76,6 @@ public class Search {
                 return person;
             }
         }
-        return new Person();
+        return new Person(0, 0, "", "", "", "", false, false);
     }
 }

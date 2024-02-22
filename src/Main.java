@@ -4,8 +4,10 @@ import db.DataManager;
 import db.Person;
 import java.util.List;
 import java.util.function.Consumer;
+
 /**
  * CSE-3241 Database Project
+ * 
  * @authors Skylar Stephens, Kate Goertz, Haley Bonidie, Gwyn Barnholtz
  */
 public class Main {
@@ -43,7 +45,7 @@ public class Main {
             // Get user input with invalid input handling
             userChoice = Utility.toInt(scanner.nextLine());
             Utility.clearTerminal();
-            if (userChoice > 0 && userChoice < 8) {
+            if (userChoice > 0 && userChoice < MenuOptions.size() + 1) {
                 MenuOptions.get(userChoice - 1).accept(scanner);
             } else if (userChoice == 8) {
                 System.out.println("Exiting...");

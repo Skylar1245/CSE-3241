@@ -52,11 +52,11 @@ public class AddNewEntry {
         System.out.print("Address: ");
         String address = scanner.nextLine();
         System.out.print("Phone: ");
-        String phone = scanner.nextLine();
+        int phone = Utility.toInt(scanner.nextLine());
         System.out.print("Email: ");
         String email = scanner.nextLine();
         System.out.print("id Number: ");
-        String id = scanner.nextLine();
+        int id = Utility.toInt(scanner.nextLine());;
         Utility.clearTerminal();
         System.out.println("Please review the following information:");
         System.out.println("First Name: " + fname + "\nLast Name: " + lname + "\nAddress: " + address + "\nPhone: "
@@ -65,13 +65,7 @@ public class AddNewEntry {
         System.out.print("Is this information correct? (Y/N): ");
         String userInput = scanner.nextLine();
         if (userInput.equalsIgnoreCase("Y")) {
-            Person member = new Person();
-            member.fname = fname;
-            member.lname = lname;
-            member.address = address;
-            member.phone = Utility.toInt(phone);
-            member.email = email;
-            member.id_no = Utility.toInt(id);
+            Person member = new Person(id, phone, fname, lname, address, email, false, false);
             Main.People.add(member);
             Utility.clearTerminal();
             System.out.println("Member added successfully!");
