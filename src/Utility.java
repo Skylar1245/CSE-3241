@@ -3,7 +3,8 @@
  */
 public class Utility {
     /**
-     * Clears the terminal
+     * Clears the terminal only in VS Code, in eclipse it will not work
+     * and prints square characters instead
      */
     public static void clearTerminal() {
         try {

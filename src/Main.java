@@ -18,7 +18,7 @@ public class Main {
      */
     private static void PrintMainMenu() {
         System.out.print(
-                "Main Menu:\n\n1. Search\n2. Check Inventory\n3. View Rented Items\n4. Return Equipment\n5. Manage Database\n6. Exit\nPlease enter the number of the option you would like to select:");
+                "Main Menu:\n\n1. Search\n2. Check Inventory\n3. Manage Equipment\n4. Manage Database\n5. Exit\nPlease enter the number of the option you would like to select:");
     }
 
     /**
@@ -26,7 +26,7 @@ public class Main {
      * nothing
      */
     private static List<Consumer<Scanner>> MenuOptions = List.of(Search::Menu, CheckInventory::Menu,
-            ViewRentedItems::Menu, RegisterItemReturn::Menu, ManageDatabase::Menu);
+            ManageEquipment::Menu, ManageDatabase::Menu);
 
     /**
      * Main method loop
@@ -34,6 +34,7 @@ public class Main {
      * @param args
      */
     public static void main(String[] args) {
+        Utility.clearTerminal();
         // Read from existing files
         People = DataManager.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);
