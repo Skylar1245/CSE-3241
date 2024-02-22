@@ -18,7 +18,7 @@ public class Main {
      */
     private static void PrintMainMenu() {
         System.out.print(
-                "Main Menu:\n\n1. Search\n2. Check Inventory\n3. View Rented Items\n4. Return Equipment\n5. Edit Existing Entry\n6. Add New Entry\n7. Delete Existing Entry\n8. Exit\nPlease enter the number of the option you would like to select:");
+                "Main Menu:\n\n1. Search\n2. Check Inventory\n3. View Rented Items\n4. Return Equipment\n5. Manage Database\n6. Exit\nPlease enter the number of the option you would like to select:");
     }
 
     /**
@@ -26,8 +26,7 @@ public class Main {
      * nothing
      */
     private static List<Consumer<Scanner>> MenuOptions = List.of(Search::Menu, CheckInventory::Menu,
-            ViewRentedItems::Menu, RegisterItemReturn::Menu, ManageDatabase::EditMenu, ManageDatabase::AddMenu,
-            ManageDatabase::DeleteMenu);
+            ViewRentedItems::Menu, RegisterItemReturn::Menu, ManageDatabase::Menu);
 
     /**
      * Main method loop
@@ -38,6 +37,8 @@ public class Main {
         // Read from existing files
         People = DataManager.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);
+        // The exit input will always be the last option
+        int exitInput = MenuOptions.size() + 1;
         // Loop until user exits
         int userChoice = 0;
         while (userChoice != 8) {
@@ -45,9 +46,9 @@ public class Main {
             // Get user input with invalid input handling
             userChoice = Utility.toInt(scanner.nextLine());
             Utility.clearTerminal();
-            if (userChoice > 0 && userChoice < MenuOptions.size() + 1) {
+            if (userChoice > 0 && userChoice < exitInput) {
                 MenuOptions.get(userChoice - 1).accept(scanner);
-            } else if (userChoice == 8) {
+            } else if (userChoice == exitInput) {
                 System.out.println("Exiting...");
                 break;
             } else {

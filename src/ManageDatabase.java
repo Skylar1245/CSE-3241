@@ -2,6 +2,62 @@ import java.util.Scanner;
 import db.Person;
 
 public class ManageDatabase {
+
+    private static void PrintOptions() {
+        System.out.print(
+                "\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
+    }
+
+    public static void Menu(Scanner scanner) {
+        Utility.clearTerminal();
+        System.out.print(
+                "Database Management:\n\n1. Edit Entry\n2. Add New Entry\n3. Delete Entry\n\nPlease enter the number of the option you would like to select:");
+        int userChoice = Utility.toInt(scanner.nextLine());
+        if (userChoice == 1) {
+            EditMenu(scanner);
+        } else if (userChoice == 2) {
+            AddMenu(scanner);
+        } else if (userChoice == 3) {
+            DeleteMenu(scanner);
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
+    }
+
+    /**
+     * Prints the edit menu
+     * 
+     * @param scanner
+     */
+    public static void EditMenu(Scanner scanner) {
+        Utility.clearTerminal();
+        System.out.print(
+                "Edit Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
+
+        String userInput = scanner.nextLine();
+        int userChoice = Integer.parseInt(userInput);
+
+        if (userChoice == 1) {
+            EditMember(scanner);
+        } else if (userChoice == 2) {
+            System.out.println("You chose: Drone");
+        } else if (userChoice == 3) {
+            System.out.println("You chose: Equipment");
+        } else if (userChoice == 4) {
+            System.out.println("You chose: Order");
+        } else if (userChoice == 5) {
+            System.out.println("You chose: Asset Repair");
+        } else if (userChoice == 6) {
+            System.out.println("You chose: Review");
+        } else if (userChoice == 7) {
+            System.out.println("You chose: Review");
+        } else if (userChoice == 8) {
+            System.out.println("You chose: Employee");
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
+    }
+
     /**
      * Displays the menu for adding a new entry to the database
      * 
@@ -9,11 +65,42 @@ public class ManageDatabase {
      */
     public static void AddMenu(Scanner scanner) {
         Utility.clearTerminal();
-        System.out.print(
-                "New Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
+        System.out.print("New Entry Menu");
+        PrintOptions();
         int userChoice = Utility.toInt(scanner.nextLine());
         if (userChoice == 1) {
             AddMember(scanner);
+        } else if (userChoice == 2) {
+            System.out.println("You chose: Drone");
+        } else if (userChoice == 3) {
+            System.out.println("You chose: Equipment");
+        } else if (userChoice == 4) {
+            System.out.println("You chose: Order");
+        } else if (userChoice == 5) {
+            System.out.println("You chose: Asset Repair");
+        } else if (userChoice == 6) {
+            System.out.println("You chose: Review");
+        } else if (userChoice == 7) {
+            System.out.println("You chose: Review");
+        } else if (userChoice == 8) {
+            System.out.println("You chose: Employee");
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
+    }
+
+    /**
+     * Prints the delete entry menu
+     * 
+     * @param scanner
+     */
+    public static void DeleteMenu(Scanner scanner) {
+        Utility.clearTerminal();
+        System.out.print("Delete Entry Menu:");
+        PrintOptions();
+        int userChoice = Utility.toInt(scanner.nextLine());
+        if (userChoice == 1) {
+            DeleteMember(scanner);
         } else if (userChoice == 2) {
             System.out.println("You chose: Drone");
         } else if (userChoice == 3) {
@@ -72,37 +159,6 @@ public class ManageDatabase {
     }
 
     /**
-     * Prints the delete entry menu
-     * 
-     * @param scanner
-     */
-    public static void DeleteMenu(Scanner scanner) {
-        Utility.clearTerminal();
-        System.out.print(
-                "Delete Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
-        int userChoice = Utility.toInt(scanner.nextLine());
-        if (userChoice == 1) {
-            DeleteMember(scanner);
-        } else if (userChoice == 2) {
-            System.out.println("You chose: Drone");
-        } else if (userChoice == 3) {
-            System.out.println("You chose: Equipment");
-        } else if (userChoice == 4) {
-            System.out.println("You chose: Order");
-        } else if (userChoice == 5) {
-            System.out.println("You chose: Asset Repair");
-        } else if (userChoice == 6) {
-            System.out.println("You chose: Review");
-        } else if (userChoice == 7) {
-            System.out.println("You chose: Review");
-        } else if (userChoice == 8) {
-            System.out.println("You chose: Employee");
-        } else {
-            System.out.println("Invalid input. Please try again.");
-        }
-    }
-
-    /**
      * Deletes a member from the database
      * 
      * @param scanner
@@ -121,40 +177,6 @@ public class ManageDatabase {
             }
         } else {
             System.out.println("Aborted.");
-        }
-    }
-
-    /**
-     * Prints the edit menu
-     * 
-     * @param scanner
-     */
-    public static void EditMenu(Scanner scanner) {
-        Utility.clearTerminal();
-        System.out.print(
-                "Edit Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
-
-        String userInput = scanner.nextLine();
-        int userChoice = Integer.parseInt(userInput);
-
-        if (userChoice == 1) {
-            EditMember(scanner);
-        } else if (userChoice == 2) {
-            System.out.println("You chose: Drone");
-        } else if (userChoice == 3) {
-            System.out.println("You chose: Equipment");
-        } else if (userChoice == 4) {
-            System.out.println("You chose: Order");
-        } else if (userChoice == 5) {
-            System.out.println("You chose: Asset Repair");
-        } else if (userChoice == 6) {
-            System.out.println("You chose: Review");
-        } else if (userChoice == 7) {
-            System.out.println("You chose: Review");
-        } else if (userChoice == 8) {
-            System.out.println("You chose: Employee");
-        } else {
-            System.out.println("Invalid input. Please try again.");
         }
     }
 
