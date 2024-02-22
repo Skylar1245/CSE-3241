@@ -26,8 +26,8 @@ public class Main {
      * nothing
      */
     private static List<Consumer<Scanner>> MenuOptions = List.of(Search::Menu, CheckInventory::Menu,
-            ViewRentedItems::Menu, RegisterItemReturn::Menu, EditExistingEntry::Menu, AddNewEntry::Menu,
-            DeleteExistingEntry::Menu);
+            ViewRentedItems::Menu, RegisterItemReturn::Menu, ManageDatabase::EditMenu, ManageDatabase::AddMenu,
+            ManageDatabase::DeleteMenu);
 
     /**
      * Main method loop
