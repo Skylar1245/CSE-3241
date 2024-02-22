@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 /**
  * Manages the data
  */
-public class ManageData {
+public class DataManager {
     /**
      * Reads from the files
      * 
