@@ -18,7 +18,7 @@ public class Main {
      */
     private static void PrintMainMenu() {
         System.out.print(
-                "Main Menu:\n\n1. Search\n2. Check Inventory\n3. Manage Equipment\n4. Manage Database\n5. Exit\nPlease enter the number of the option you would like to select:");
+                "Main Menu:\n\n1. Search\n2. Check Inventory UNIMPLEMENTED\n3. Manage Equipment\n4. Manage Database\n5. Exit\nNOTE: Only member options are functional\nPlease enter the number of the option you would like to select:");
     }
 
     /**

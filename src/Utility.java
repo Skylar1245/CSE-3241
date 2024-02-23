@@ -14,7 +14,7 @@ public class Utility {
                 new ProcessBuilder("clear").inheritIO().start().waitFor();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            // No need to act, it's just a utility method
         }
     }
 
