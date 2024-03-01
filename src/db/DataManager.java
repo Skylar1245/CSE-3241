@@ -11,13 +11,17 @@ import java.io.PrintWriter;
  */
 public class DataManager {
     /**
+     * Used for read/write to the file
+     */
+    private static String filename = "src/data/people.txt";
+    /**
      * Reads from the files
      * 
      * @return ArrayList<Person>
      * @throws FileNotFoundException
      */
     public static ArrayList<Person> ReadFromFiles() {
-        File file = new File("src/data/people.txt");
+        File file = new File(filename);
         Scanner scanner = null;
         ArrayList<Person> people = new ArrayList<Person>();
         try {
@@ -47,7 +51,7 @@ public class DataManager {
      * @throws FileNotFoundException
      */
     public static void WriteToFiles(ArrayList<Person> people) {
-        File file = new File("src/data/people.txt");
+        File file = new File(filename);
         try {
             PrintWriter output = new PrintWriter(file);
             for (Person person : people) {
