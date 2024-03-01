@@ -5,7 +5,7 @@ package db;
  */
 public class Person {
     public int id_no;
-    public int phone;
+    public String phone;
     public String fname;
     public String lname;
     public String address;
@@ -27,7 +27,7 @@ public class Person {
      * @param isEmployee
      * @param isCommunityMember
      */
-    public Person(int id_no, int phone, String fname, String lname, String address, String email, boolean isEmployee,
+    public Person(int id_no, String phone, String fname, String lname, String address, String email, boolean isEmployee,
             boolean isCommunityMember) {
         this.id_no = id_no;
         this.phone = phone;
@@ -52,7 +52,7 @@ public class Person {
      * @param employeeData
      * @param isCommunityMember
      */
-    public Person(int id_no, int phone, String fname, String lname, String address, String email, boolean isEmployee,
+    public Person(int id_no, String phone, String fname, String lname, String address, String email, boolean isEmployee,
             Employee employeeData, boolean isCommunityMember) {
         this.id_no = id_no;
         this.phone = phone;
@@ -78,7 +78,7 @@ public class Person {
      * @param isCommunityMember
      * @param communityMemberData
      */
-    public Person(int id_no, int phone, String fname, String lname, String address, String email, boolean isEmployee,
+    public Person(int id_no, String phone, String fname, String lname, String address, String email, boolean isEmployee,
             boolean isCommunityMember, CommunityMember communityMemberData) {
         this.id_no = id_no;
         this.phone = phone;

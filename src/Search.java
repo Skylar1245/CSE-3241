@@ -77,6 +77,6 @@ public class Search {
             }
         }
         System.out.println("No member found with that ID.");
-        return new Person(0, 0, "", "", "", "", false, false);
+        return new Person(0, "", "", "", "", "", false, false);
     }
 }

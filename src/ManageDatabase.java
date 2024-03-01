@@ -134,7 +134,7 @@ public class ManageDatabase {
         System.out.print("Address: ");
         String address = scanner.nextLine();
         System.out.print("Phone: ");
-        int phone = Utility.toInt(scanner.nextLine());
+        String phone = scanner.nextLine();
         System.out.print("Email: ");
         String email = scanner.nextLine();
         System.out.print("id Number: ");
@@ -205,7 +205,7 @@ public class ManageDatabase {
                 break;
             case 4:
                 System.out.print("Please enter the new phone number:");
-                p.phone = Utility.toInt(scanner.nextLine());
+                p.phone = scanner.nextLine();
                 break;
             case 5:
                 System.out.print("Please enter the new email:");
