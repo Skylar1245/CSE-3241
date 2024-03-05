@@ -2,7 +2,7 @@ CREATE TABLE WAREHOUSE (
     warehouse_address TEXT PRIMARY KEY,
     city TEXT,
     phone TEXT CHECK(LENGTH(phone) = 10),
-    manager TEXT,
+    manager INTEGER,
     storage_capacity INTEGER,
     drone_capacity INTEGER
 );
