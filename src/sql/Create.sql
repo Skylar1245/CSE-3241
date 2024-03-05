@@ -83,9 +83,9 @@ CREATE TABLE PLACED_ORDER (
 
 CREATE TABLE RENTAL (
     rental_no INTEGER PRIMARY KEY,
-    member TEXT,
-    drone TEXT,
-    item TEXT,
+    member INTEGER,
+    drone INTEGER,
+    item INTEGER,
     quantity INTEGER,
     checkout TEXT,
     FOREIGN KEY (member) REFERENCES COMMUNITY_MEMBER(user_id),
