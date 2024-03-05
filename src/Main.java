@@ -9,6 +9,8 @@ import java.util.function.Consumer;
  * CSE-3241 Database Project
  * 
  * @authors Skylar Stephens, Kate Goertz, Haley Bonidie, Gwyn Barnholtz
+ * 
+ * https://generatedata.com/generator
  */
 public class Main {
     public static ArrayList<Person> People;
