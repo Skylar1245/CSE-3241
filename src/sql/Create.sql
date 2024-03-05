@@ -97,18 +97,18 @@ CREATE TABLE REVIEW (
     review_no INTEGER PRIMARY KEY,
     comment TEXT,
     rating INTEGER,
-    member TEXT,
-    item TEXT,
+    member INTEGER,
+    item INTEGER,
     FOREIGN KEY (member) REFERENCES COMMUNITY_MEMBER(user_id),
     FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
 
 CREATE TABLE REPAIR (
     repair_no INTEGER PRIMARY KEY,
-    item TEXT,
+    item INTEGER,
     repair_description TEXT,
     est_time TEXT,
-    employee TEXT,
+    employee INTEGER,
     FOREIGN KEY (item) REFERENCES DRONE(serial_no),
     FOREIGN KEY (employee) REFERENCES EMPLOYEE(emp_id)
 );
