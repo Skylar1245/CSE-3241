@@ -72,6 +72,7 @@ CREATE TABLE MANUFACTURER (
     phone TEXT CHECK(LENGTH(phone) = 10),
     manufacturer_address TEXT
 );
+
 CREATE TABLE PLACED_ORDER (
     order_no INTEGER PRIMARY KEY,
     item INTEGER,
