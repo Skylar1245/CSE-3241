@@ -42,6 +42,7 @@ CREATE TABLE INVENTORY (
     manufacturer TEXT,
     inventory_location TEXT,
     FOREIGN KEY (manufacturer) REFERENCES MANUFACTURER(cname)
+    FOREIGN KEY (inventory_location) REFERENCES WAREHOUSE(warehouse_address)
 );
 
 CREATE TABLE DRONE (
