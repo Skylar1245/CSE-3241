@@ -73,7 +73,7 @@ CREATE TABLE MANUFACTURER (
 );
 CREATE TABLE PLACED_ORDER (
     order_no INTEGER PRIMARY KEY,
-    item TEXT,
+    item INTEGER,
     quantity INTEGER,
     order_value INTEGER,
     estimated_date TEXT,
