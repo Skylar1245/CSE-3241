@@ -2,7 +2,7 @@ CREATE TABLE WAREHOUSE (
     warehouse_address TEXT PRIMARY KEY,
     city TEXT,
     phone TEXT CHECK(LENGTH(phone) = 10),
-    manager TEXT,
+    manager INTEGER,
     storage_capacity INTEGER,
     drone_capacity INTEGER
 );
@@ -42,6 +42,7 @@ CREATE TABLE INVENTORY (
     manufacturer TEXT,
     inventory_location TEXT,
     FOREIGN KEY (manufacturer) REFERENCES MANUFACTURER(cname)
+    FOREIGN KEY (inventory_location) REFERENCES WAREHOUSE(warehouse_address)
 );
 
 CREATE TABLE DRONE (
@@ -71,9 +72,10 @@ CREATE TABLE MANUFACTURER (
     phone TEXT CHECK(LENGTH(phone) = 10),
     manufacturer_address TEXT
 );
+
 CREATE TABLE PLACED_ORDER (
     order_no INTEGER PRIMARY KEY,
-    item TEXT,
+    item INTEGER,
     quantity INTEGER,
     order_value INTEGER,
     estimated_date TEXT,
@@ -97,18 +99,18 @@ CREATE TABLE REVIEW (
     review_no INTEGER PRIMARY KEY,
     comment TEXT,
     rating INTEGER,
-    member TEXT,
-    item TEXT,
+    member INTEGER,
+    item INTEGER,
     FOREIGN KEY (member) REFERENCES COMMUNITY_MEMBER(user_id),
     FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
 
 CREATE TABLE REPAIR (
     repair_no INTEGER PRIMARY KEY,
-    item TEXT,
+    item INTEGER,
     repair_description TEXT,
     est_time TEXT,
-    employee TEXT,
+    employee INTEGER,
     FOREIGN KEY (item) REFERENCES DRONE(serial_no),
     FOREIGN KEY (employee) REFERENCES EMPLOYEE(emp_id)
 );
