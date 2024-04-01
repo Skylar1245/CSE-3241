@@ -1,4 +1,5 @@
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,10 +21,9 @@ import java.util.function.Consumer;
 
 public class Main {
     // JDBC strings
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:####/FIXME";
-    static final String USER = "username";
-    static final String PASS = "password";
+    private static String DATABASE = "database_binary.db";
+
+    public static Connection conn = null;
     // Temporary list of people
     public static ArrayList<Person> People;
 
@@ -43,34 +43,33 @@ public class Main {
             ManageEquipment::Menu, ManageDatabase::Menu);
 
     /**
-     * Tests the database connection with a simple query
+     * Connects to the database if it exists, creates it if it does not, and returns
+     * the connection object.
+     * 
+     * @param databaseFileName the database file name
+     * @return a connection object to the designated database
      */
-    public static void TestDatabase() {
-        // JDBC
-        Connection conn = null;
-        PreparedStatement stmt = null;
-        ResultSet rSet = null;
+    public static Connection initializeDB(String databaseFileName) {
+        String url = "jdbc:sqlite:" + databaseFileName;
+        Connection conn = null; // If you create this variable inside the Try block it will be out of scope
         try {
-            Class.forName(JDBC_DRIVER);
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-            String sql = "SELECT id, first, last FROM Employees";
-            stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, 1235550987);
-            rSet = stmt.executeQuery();
-            while (rSet.next()) {
-                int id = rSet.getInt("id");
-                String first = rSet.getString("first");
-                String last = rSet.getString("last");
-                System.out.println("ID: " + id + ", First: " + first + ", Last: " + last);
+            conn = DriverManager.getConnection(url);
+            if (conn != null) {
+                // Provides some positive assurance the connection and/or creation was
+                // successful.
+                DatabaseMetaData meta = conn.getMetaData();
+                System.out.println("The driver name is " + meta.getDriverName());
+                System.out.println("The connection to the database was successful.");
+            } else {
+                // Provides some feedback in case the connection failed but did not throw an
+                // exception.
+                System.out.println("Null Connection");
             }
-        } catch (SQLException sqlE) {
-            sqlE.printStackTrace();
-            return;
-        } catch (ClassNotFoundException classE) {
-            classE.printStackTrace();
-            return;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("There was a problem connecting to the database.");
         }
+        return conn;
     }
 
     /**
@@ -80,9 +79,7 @@ public class Main {
      */
     public static void main(String[] args) {
         Utility.clearTerminal();
-        // !
-        TestDatabase();
-        // !
+        conn = initializeDB(DATABASE);
         // Read from existing files
         People = DataManager.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);
@@ -107,5 +104,11 @@ public class Main {
         // Save any changes to files
         DataManager.WriteToFiles(People);
         scanner.close();
+        // Close db
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }
