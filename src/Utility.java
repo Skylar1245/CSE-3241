@@ -31,4 +31,36 @@ public class Utility {
             return -1;
         }
     }
+
+    /**
+     * checks if the input is a clean numeric input
+     * 
+     * @param input
+     * @return
+     */
+    public static boolean checkNumericInput(String input) {
+        if (input == null || input.isEmpty()) {
+            return false;
+        }
+        if (!input.chars().allMatch(Character::isDigit)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * checks if the input is a clean string input
+     * 
+     * @param input
+     * @return
+     */
+    public static boolean checkStringInput(String input) {
+        if (input == null || input.isEmpty()) {
+            return false;
+        }
+        if (!input.chars().allMatch(Character::isLetter)) {
+            return false;
+        }
+        return true;
+    }
 }
