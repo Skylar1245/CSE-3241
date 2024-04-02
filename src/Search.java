@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import db.Person;
+import sql.SQL;
 
 /**
  * Handles searching
@@ -69,14 +70,12 @@ public class Search {
      */
     public static Person findPerson(Scanner scanner, int id_no) {
         Utility.clearTerminal();
-        for (Person person : Main.People) {
-            if (person.id_no == id_no) {
-                System.out.println("Name: " + person.fname + " " + person.lname + "\nAddress: " + person.address
-                        + "\nPhone: " + person.phone + "\nEmail: " + person.email + "\nID: " + person.id_no);
-                return person;
-            }
+        Person p = SQL.SearchPersonInDB(id_no);
+        if (p.id_no != 0) {
+            System.out.println(p.toString());
+            return p;
         }
         System.out.println("No member found with that ID.");
-        return new Person(0, "", "", "", "", "", false, false);
+        return p;
     }
 }

@@ -1,15 +1,12 @@
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Scanner;
-import db.DataManager;
-import db.Person;
 import java.util.List;
 import java.util.function.Consumer;
+
+import sql.SQL;
 
 /**
  * CSE-3241 Database Project
@@ -21,11 +18,9 @@ import java.util.function.Consumer;
 
 public class Main {
     // JDBC strings
-    private static String DATABASE = "database_binary.db";
+    private static String DATABASE = "database.db";
 
     public static Connection conn = null;
-    // Temporary list of people
-    public static ArrayList<Person> People;
 
     /**
      * Prints the main menu
@@ -69,6 +64,7 @@ public class Main {
             System.out.println(e.getMessage());
             System.out.println("There was a problem connecting to the database.");
         }
+        SQL.init(conn);
         return conn;
     }
 
@@ -81,7 +77,6 @@ public class Main {
         Utility.clearTerminal();
         conn = initializeDB(DATABASE);
         // Read from existing files
-        People = DataManager.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);
         // The exit input will always be the last option
         int exitInput = MenuOptions.size() + 1;
@@ -101,8 +96,6 @@ public class Main {
                 System.out.println("Invalid input. Please try again.");
             }
         }
-        // Save any changes to files
-        DataManager.WriteToFiles(People);
         scanner.close();
         // Close db
         try {
