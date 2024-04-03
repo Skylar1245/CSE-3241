@@ -1,0 +1,13 @@
+.import Warehouse.csv Warehouse
+.import Person.csv Person
+.import Employee.csv Employee
+.import Community_member.csv Community_Member
+.import Manufacturer.csv Manufacturer
+.import Inventory.csv Inventory
+.import Drone.csv Drone
+.import Equipment.csv Equipment
+.import Placed_order.csv Placed_Order
+.import Rental.csv Rental
+.import Review.csv Review
+.import Repair.csv Repair
+.import Transport.csv Transport

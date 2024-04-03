@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import sql.SQL;
+import sql.UsefulReports;
 
 /**
  * CSE-3241 Database Project
@@ -18,7 +19,7 @@ import sql.SQL;
 
 public class Main {
     // JDBC strings
-    private static String DATABASE = "database.db";
+    private static String DATABASE = "databaseV4.db";
 
     public static Connection conn = null;
 
@@ -27,7 +28,7 @@ public class Main {
      */
     private static void PrintMainMenu() {
         System.out.print(
-                "Main Menu:\n\n1. Search\n2. Check Inventory UNIMPLEMENTED\n3. Manage Equipment\n4. Manage Database\n5. Exit\nNOTE: Only member options are functional\nPlease enter the number of the option you would like to select:");
+                "Main Menu:\n\n1. Search\n2. Check Inventory UNIMPLEMENTED\n3. Manage Equipment\n4. Manage Database\n5. Useful Reports\n6. Exit\nNOTE: Only member options are functional\nPlease enter the number of the option you would like to select:");
     }
 
     /**
@@ -35,7 +36,7 @@ public class Main {
      * nothing
      */
     private static List<Consumer<Scanner>> MenuOptions = List.of(Search::Menu, CheckInventory::Menu,
-            ManageEquipment::Menu, ManageDatabase::Menu);
+            ManageEquipment::Menu, ManageDatabase::Menu, UsefulReports::Menu);
 
     /**
      * Connects to the database if it exists, creates it if it does not, and returns
@@ -65,6 +66,7 @@ public class Main {
             System.out.println("There was a problem connecting to the database.");
         }
         SQL.init(conn);
+        UsefulReports.init(conn);
         return conn;
     }
 
@@ -99,9 +101,11 @@ public class Main {
         scanner.close();
         // Close db
         try {
-            conn.close();
+            if (conn != null) {
+                conn.close();
+            }
         } catch (SQLException e) {
-            System.err.println(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

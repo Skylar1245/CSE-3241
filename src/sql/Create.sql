@@ -1,4 +1,4 @@
-CREATE TABLE WAREHOUSE (
+CREATE TABLE Warehouse (
     warehouse_address TEXT PRIMARY KEY,
     city TEXT,
     phone TEXT CHECK(LENGTH(phone) = 10),
@@ -7,7 +7,7 @@ CREATE TABLE WAREHOUSE (
     drone_capacity INTEGER
 );
 
-CREATE TABLE PERSON (
+CREATE TABLE Person (
     id_no INTEGER PRIMARY KEY,
     phone TEXT CHECK(LENGTH(phone) = 10),
     fname TEXT,
@@ -16,7 +16,7 @@ CREATE TABLE PERSON (
     email TEXT
 );
 
-CREATE TABLE EMPLOYEE (
+CREATE TABLE Employee (
     emp_id INTEGER PRIMARY KEY,
     skill TEXT,
     salary INTEGER,
@@ -25,7 +25,7 @@ CREATE TABLE EMPLOYEE (
     FOREIGN KEY (warehouse) REFERENCES WAREHOUSE(warehouse_address)
 );
 
-CREATE TABLE COMMUNITY_MEMBER (
+CREATE TABLE Community_Member (
     user_id INTEGER PRIMARY KEY,
     date_started TEXT,
     distance INTEGER,
@@ -33,7 +33,7 @@ CREATE TABLE COMMUNITY_MEMBER (
     FOREIGN KEY (user_id) REFERENCES PERSON(id_no)
 );
 
-CREATE TABLE INVENTORY (
+CREATE TABLE Inventory (
     serial_no INTEGER PRIMARY KEY,
     model_no INTEGER,
     inventory_status TEXT,
@@ -41,20 +41,19 @@ CREATE TABLE INVENTORY (
     warranty_exp TEXT,
     manufacturer TEXT,
     inventory_location TEXT,
-    FOREIGN KEY (manufacturer) REFERENCES MANUFACTURER(cname)
-    FOREIGN KEY (inventory_location) REFERENCES WAREHOUSE(warehouse_address)
+    inventory_name TEXT,
+    FOREIGN KEY (manufacturer) REFERENCES MANUFACTURER(cname) FOREIGN KEY (inventory_location) REFERENCES WAREHOUSE(warehouse_address)
 );
 
-CREATE TABLE DRONE (
+CREATE TABLE Drone (
     serial_no INTEGER PRIMARY KEY,
-    drone_name TEXT,
     weight_cap TEXT,
     dist_auto TEXT,
     max_speed INTEGER,
     FOREIGN KEY (serial_no) REFERENCES INVENTORY(serial_no)
 );
 
-CREATE TABLE EQUIPMENT (
+CREATE TABLE Equipment (
     serial_no INTEGER PRIMARY KEY,
     equipment_type TEXT,
     equipment_description TEXT,
@@ -66,14 +65,14 @@ CREATE TABLE EQUIPMENT (
     FOREIGN KEY (serial_no) REFERENCES INVENTORY(serial_no)
 );
 
-CREATE TABLE MANUFACTURER (
+CREATE TABLE Manufacturer (
     cname TEXT PRIMARY KEY,
     city TEXT,
     phone TEXT CHECK(LENGTH(phone) = 10),
     manufacturer_address TEXT
 );
 
-CREATE TABLE PLACED_ORDER (
+CREATE TABLE Order (
     order_no INTEGER PRIMARY KEY,
     item INTEGER,
     quantity INTEGER,
@@ -83,7 +82,7 @@ CREATE TABLE PLACED_ORDER (
     FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
 
-CREATE TABLE RENTAL (
+CREATE TABLE Rental (
     rental_no INTEGER PRIMARY KEY,
     member INTEGER,
     drone INTEGER,
@@ -95,7 +94,7 @@ CREATE TABLE RENTAL (
     FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
 
-CREATE TABLE REVIEW (
+CREATE TABLE Review (
     review_no INTEGER PRIMARY KEY,
     comment TEXT,
     rating INTEGER,
@@ -105,7 +104,7 @@ CREATE TABLE REVIEW (
     FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
 
-CREATE TABLE REPAIR (
+CREATE TABLE Repair (
     repair_no INTEGER PRIMARY KEY,
     item INTEGER,
     repair_description TEXT,
@@ -113,4 +112,12 @@ CREATE TABLE REPAIR (
     employee INTEGER,
     FOREIGN KEY (item) REFERENCES DRONE(serial_no),
     FOREIGN KEY (employee) REFERENCES EMPLOYEE(emp_id)
+);
+
+CREATE TABLE Transport (
+    drone INTEGER,
+    equipment INTEGER,
+    PRIMARY KEY (drone, equipment),
+    FOREIGN KEY (drone) REFERENCES DRONE(serial_no),
+    FOREIGN KEY (equipment) REFERENCES EQUIPMENT(serial_no)
 );
