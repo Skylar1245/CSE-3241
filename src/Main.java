@@ -1,19 +1,26 @@
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Scanner;
-import db.DataManager;
-import db.Person;
 import java.util.List;
 import java.util.function.Consumer;
+
+import sql.SQL;
 
 /**
  * CSE-3241 Database Project
  * 
  * @authors Skylar Stephens, Kate Goertz, Haley Bonidie, Gwyn Barnholtz
  * 
- * https://generatedata.com/generator
+ *          https://generatedata.com/generator
  */
+
 public class Main {
-    public static ArrayList<Person> People;
+    // JDBC strings
+    private static String DATABASE = "database.db";
+
+    public static Connection conn = null;
 
     /**
      * Prints the main menu
@@ -31,14 +38,45 @@ public class Main {
             ManageEquipment::Menu, ManageDatabase::Menu);
 
     /**
+     * Connects to the database if it exists, creates it if it does not, and returns
+     * the connection object.
+     * 
+     * @param databaseFileName the database file name
+     * @return a connection object to the designated database
+     */
+    public static Connection initializeDB(String databaseFileName) {
+        String url = "jdbc:sqlite:" + databaseFileName;
+        Connection conn = null; // If you create this variable inside the Try block it will be out of scope
+        try {
+            conn = DriverManager.getConnection(url);
+            if (conn != null) {
+                // Provides some positive assurance the connection and/or creation was
+                // successful.
+                DatabaseMetaData meta = conn.getMetaData();
+                System.out.println("The driver name is " + meta.getDriverName());
+                System.out.println("The connection to the database was successful.");
+            } else {
+                // Provides some feedback in case the connection failed but did not throw an
+                // exception.
+                System.out.println("Null Connection");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            System.out.println("There was a problem connecting to the database.");
+        }
+        SQL.init(conn);
+        return conn;
+    }
+
+    /**
      * Main method loop
      * 
      * @param args
      */
     public static void main(String[] args) {
         Utility.clearTerminal();
+        conn = initializeDB(DATABASE);
         // Read from existing files
-        People = DataManager.ReadFromFiles();
         Scanner scanner = new Scanner(System.in);
         // The exit input will always be the last option
         int exitInput = MenuOptions.size() + 1;
@@ -58,8 +96,12 @@ public class Main {
                 System.out.println("Invalid input. Please try again.");
             }
         }
-        // Save any changes to files
-        DataManager.WriteToFiles(People);
         scanner.close();
+        // Close db
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

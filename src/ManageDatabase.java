@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import db.Person;
+import sql.SQL;
 
 public class ManageDatabase {
 
@@ -11,7 +12,7 @@ public class ManageDatabase {
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
-                "Database Management:\n\n1. Edit Entry\n2. Add New Entry\n3. Delete Entry\n\nPlease enter the number of the option you would like to select:");
+                "Database Management:\n\n1. Edit Entry\n2. Add New Entry\n3. Delete Entry\n4. View Table\n\nPlease enter the number of the option you would like to select:");
         int userChoice = Utility.toInt(scanner.nextLine());
         if (userChoice == 1) {
             EditMenu(scanner);
@@ -19,6 +20,8 @@ public class ManageDatabase {
             AddMenu(scanner);
         } else if (userChoice == 3) {
             DeleteMenu(scanner);
+        } else if (userChoice == 4) {
+            ViewMenu(scanner);
         } else {
             System.out.println("Invalid input. Please try again.");
         }
@@ -121,6 +124,37 @@ public class ManageDatabase {
     }
 
     /**
+     * Displays the menu for adding a new entry to the database
+     * 
+     * @param scanner
+     */
+    public static void ViewMenu(Scanner scanner) {
+        Utility.clearTerminal();
+        System.out.print("View Table Menu");
+        PrintOptions();
+        int userChoice = Utility.toInt(scanner.nextLine());
+        if (userChoice == 1) {
+            SQL.ViewAllPersons();
+        } else if (userChoice == 2) {
+            System.out.println("You chose: Drone");
+        } else if (userChoice == 3) {
+            System.out.println("You chose: Equipment");
+        } else if (userChoice == 4) {
+            System.out.println("You chose: Order");
+        } else if (userChoice == 5) {
+            System.out.println("You chose: Asset Repair");
+        } else if (userChoice == 6) {
+            System.out.println("You chose: Review");
+        } else if (userChoice == 7) {
+            System.out.println("You chose: Review");
+        } else if (userChoice == 8) {
+            System.out.println("You chose: Employee");
+        } else {
+            System.out.println("Invalid input. Please try again.");
+        }
+    }
+
+    /**
      * Adds a new member to the database
      * 
      * @param scanner
@@ -149,9 +183,12 @@ public class ManageDatabase {
         String userInput = scanner.nextLine();
         if (userInput.equalsIgnoreCase("Y")) {
             Person member = new Person(id, phone, fname, lname, address, email, false, false);
-            Main.People.add(member);
-            Utility.clearTerminal();
-            System.out.println("Member added successfully!");
+            if (SQL.AddPersonToDB(member)) {
+                Utility.clearTerminal();
+                System.out.println("Member added successfully!");
+            } else {
+                System.out.println("Error adding member to database.");
+            }
         } else {
             AddMember(scanner);
         }
@@ -169,7 +206,7 @@ public class ManageDatabase {
         System.out.print("Are you sure you want to delete member with ID: " + personID + "? (Y/N): ");
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Y")) {
-            boolean r = Main.People.removeIf(person -> person.id_no == Utility.toInt(personID));
+            boolean r = SQL.RemovePersonFromDB(Utility.toInt(personID));
             if (r) {
                 System.out.println("Member with ID: " + personID + " has been deleted.");
             } else {
@@ -216,7 +253,12 @@ public class ManageDatabase {
                 EditMember(scanner);
                 break;
         }
-        System.out.print("Result: " + p.toString());
+        if (SQL.EditPersonInDB(p)) {
+            System.out.println("Member updated successfully!");
+            System.out.print("Result: " + p.toString());
+        } else {
+            System.out.println("Error updating member.");
+        }
     }
 
 }
