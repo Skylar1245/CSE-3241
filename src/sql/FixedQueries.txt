@@ -1,4 +1,3 @@
-**USEFUL QUERY 6**
 SELECT D.name, D.serial_no as serialNumber
 FROM Inventory as I, Drone as D, Manufacturer as M
 WHERE I.serial_no = D.serial_no 
@@ -6,7 +5,6 @@ AND I.manufacturer = M.cname
 AND M.cname = "Ligula Elit Pretium Limited"
 AND I.inventory_year = 2009;
 
-**USEFUL QUERY 1**
 SELECT E.equipment_type, R.checkout
 FROM Equipment as E, Rental as R, Community_Member as M
 WHERE E.serial_no = R.item
@@ -20,7 +18,6 @@ AND E.serial_no = I.serial_no
 AND E.quantity <= 2
 AND W.warehouse_address = "8511 Mollis Road";
 
-
 SELECT P.fname, P.lname, E.equipment_type
 FROM Person as P, Community_Member as C, Equipment as E, Drone as D, Rental as R
 WHERE P.id_no=C.user_id
@@ -30,7 +27,6 @@ AND R.item=E.serial_no
 AND C.distance<10
 AND D.name="B";
 
-
 SELECT P.fname, COUNT(DISTINCT D.serial_no) as NumDrones
 FROM Person as P, Community_Member as C, Drone as D, Rental as R
 WHERE P.id_no=C.user_id
@@ -38,7 +34,6 @@ AND R.member=C.user_id
 AND R.drone=D.serial_no
 AND C.user_id=5771;
 
-**USEFUL QUERY 5**
 SELECT name, MAX(numItems) as numItems
 FROM (SELECT P.fname as name, COUNT(*) as numItems
 FROM Person as P, Community_Member as C, Rental as R
