@@ -28,14 +28,14 @@ public class Main {
      */
     private static void PrintMainMenu() {
         System.out.print(
-                "Main Menu:\n\n1. Search\n2. Check Inventory UNIMPLEMENTED\n3. Manage Equipment\n4. Manage Database\n5. Useful Reports\n6. Exit\nNOTE: Only member options are functional\nPlease enter the number of the option you would like to select:");
+                "Main Menu: \n(NOTE: Only Member Entity is ready for add/modify/remove/retrieve)\n\n1. Search\n2. Manage Equipment\n3. Manage Database\n4. Useful Reports\n5. Exit\nNOTE: Only member options are functional\nPlease enter the number of the option you would like to select:");
     }
 
     /**
      * List of menu options as Consumers that must take in a Scanner and return
      * nothing
      */
-    private static List<Consumer<Scanner>> MenuOptions = List.of(Search::Menu, CheckInventory::Menu,
+    private static List<Consumer<Scanner>> MenuOptions = List.of(Search::Menu,
             ManageEquipment::Menu, ManageDatabase::Menu, UsefulReports::Menu);
 
     /**
