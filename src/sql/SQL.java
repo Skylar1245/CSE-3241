@@ -148,6 +148,7 @@ public class SQL {
             while (rs.next()) {
                 int equipmentID = rs.getInt("item");
                 int quantity = rs.getInt("quantity");
+                int drone = rs.getInt("drone");
                 // Update the quantity of the equipment
                 sql = "UPDATE Equipment SET quantity = quantity + ? WHERE serial_no = ?";
                 ps = conn.prepareStatement(sql);
@@ -156,9 +157,10 @@ public class SQL {
                 ps.executeUpdate();
                 // tell drone it is free
                 sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
+                //TODO does not update drone
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1, Available);
-                ps.setInt(2, GetDrone());
+                ps.setInt(2, drone);
                 ps.executeUpdate();
             }
             sql = "DELETE FROM Rental WHERE rental_no = ?";
