@@ -67,14 +67,14 @@ public class ManageEquipment {
         System.out.println("Schedule Delivery:");
         System.out.print("Please enter the Rental Number:");
         int rentalID = Utility.toInt(scanner.nextLine());
-        // ! Check if rental exists
         Utility.clearTerminal();
         System.out.print("Rental Number: " + rentalID + "\n\nIs the above information correct? (Y/N): ");
         String confirmation = scanner.nextLine();
         Utility.clearTerminal();
         if (confirmation.equalsIgnoreCase("Y")) {
-            // ! Update rental status and schedule delivery based on user location
-            System.out.println("Delivery scheduled successfully!");
+            if (SQL.AddTransport(rentalID, confirmation, SQL.TransportType.Delivery)) {
+                System.out.println("Delivery scheduled successfully!");
+            }
         } else {
             System.out.println("Delivery cancelled.");
         }
@@ -84,14 +84,14 @@ public class ManageEquipment {
         System.out.println("Schedule Pickup:");
         System.out.print("Please enter the Rental Number:");
         int rentalID = Utility.toInt(scanner.nextLine());
-        // ! Check if rental exists
         Utility.clearTerminal();
         System.out.print("Rental Number: " + rentalID + "\n\nIs the above information correct? (Y/N): ");
         String confirmation = scanner.nextLine();
         Utility.clearTerminal();
         if (confirmation.equalsIgnoreCase("Y")) {
-            // ! Update rental status and schedule pickup based on user location
-            System.out.println("Pickup scheduled successfully!");
+            if (SQL.AddTransport(rentalID, confirmation, SQL.TransportType.Pickup)) {
+                System.out.println("Pickup scheduled successfully!");
+            }
         } else {
             System.out.println("Pickup cancelled.");
         }

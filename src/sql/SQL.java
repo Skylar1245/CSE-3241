@@ -103,7 +103,7 @@ public class SQL {
     public static boolean AddRental(int equipmentID, int quantity, int userID) {
         try {
             Random rand = new Random();
-            int rental_no = rand.nextInt(100000);
+            int rental_no = rand.nextInt(9999);
             String sql = "INSERT INTO Rental(rental_no, member, drone, item, quantity, checkout, duration) VALUES(?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, rental_no);
@@ -125,6 +125,12 @@ public class SQL {
             ps.setInt(1, quantity);
             ps.setInt(2, equipmentID);
             ps.executeUpdate();
+            // tell drone it is busy
+            sql = "UPDATE Drone SET status = ? WHERE id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, DroneStatus.InUse.toString());
+            ps.setInt(2, GetDrone());
+            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -132,6 +138,7 @@ public class SQL {
         return true;
     }
 
+    // TODO this should be a transaction
     public static boolean ReturnEquipment(int rentalID) {
         String sql = "SELECT * FROM Rental WHERE rental_no = ?";
         try {
@@ -147,10 +154,11 @@ public class SQL {
                 ps.setInt(1, quantity);
                 ps.setInt(2, equipmentID);
                 ps.executeUpdate();
-                // Delete the rental
-                sql = "DELETE FROM Rental WHERE rental_no = ?";
+                // tell drone it is free
+                sql = "UPDATE Drone SET status = ? WHERE id = ?";
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, rentalID);
+                ps.setString(1, DroneStatus.Available.toString());
+                ps.setInt(2, GetDrone());
                 ps.executeUpdate();
             }
             sql = "DELETE FROM Rental WHERE rental_no = ?";
@@ -180,6 +188,48 @@ public class SQL {
     }
 
     public static int GetDrone() {
-        return 0;
+        String sql = "SELECT * FROM Drone";
+
+        try {
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(sql);
+            while (rs.next()) {
+                if (rs.getString("status").equals(DroneStatus.Available.toString())) {
+                    return rs.getInt("id");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return -1;
+    }
+
+    public static enum TransportType {
+        Delivery, Pickup
+    }
+
+    public static enum DroneStatus {
+        Available, InUse
+    }
+
+    public static boolean AddTransport(int rentalID, String requested, TransportType type) {
+        String sql = "INSERT INTO Transport(rental_no, departure_date, est_arrival, type) VALUES(?,?,?,?)";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, rentalID);
+            ps.setDate(2, new Date(System.currentTimeMillis()));
+            ps.setString(3, requested);
+            ps.setString(4, type.toString());
+            ps.executeUpdate();
+            // tell drone it is busy now
+            sql = "UPDATE Drone SET status = ? WHERE id = ?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, DroneStatus.InUse.toString());
+            ps.setInt(2, GetDrone());
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 }
