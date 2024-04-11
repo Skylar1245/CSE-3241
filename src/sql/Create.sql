@@ -72,7 +72,7 @@ CREATE TABLE Manufacturer (
     manufacturer_address TEXT
 );
 
-CREATE TABLE Order (
+CREATE TABLE Orders (
     order_no INTEGER PRIMARY KEY,
     item INTEGER,
     quantity INTEGER,
@@ -123,5 +123,5 @@ CREATE TABLE RentedItems (
     item INTEGER,
     PRIMARY KEY (rental_no, item),
     FOREIGN KEY (rental_no) REFERENCES Rental(rental_no),
-    FOREIGN KEY (equipment) REFERENCES EQUIPMENT(serial_no)
+    FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
