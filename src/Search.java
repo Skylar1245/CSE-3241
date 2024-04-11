@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import db.Person;
-import sql.SQL;
 
 /**
  * Handles searching
@@ -15,7 +13,7 @@ public class Search {
     public static void Menu(Scanner scanner) {
         Utility.clearTerminal();
         System.out.print(
-                "Search Menu:\n\n1. All\n2. Members\n3. Drones\n4. Equipment\n5. Rental\n6. History\n7. Manufacturer\n8. Ratings\n9. Expiration Dates\n10. Employee\n11. Asset Repair\n\nPlease enter the number of the option you would like to select:");
+                "Search Menu:\n\n1. All\n2. Members ONLY WORKING OPTION\n3. Drones\n4. Equipment\n5. Rental\n6. History\n7. Manufacturer\n8. Ratings\n9. Expiration Dates\n10. Employee\n11. Asset Repair\n\nPlease enter the number of the option you would like to select:");
 
         int userChoice = Utility.toInt(scanner.nextLine());
         if (userChoice == 1) {
@@ -71,7 +69,7 @@ public class Search {
     public static Person findPerson(Scanner scanner, int id_no) {
         Utility.clearTerminal();
         Person p = SQL.SearchPersonInDB(id_no);
-        if (p.id_no != 0) {
+        if (p.id_no > 0) {
             System.out.println(p.toString());
             return p;
         }

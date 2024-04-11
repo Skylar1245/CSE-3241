@@ -6,9 +6,6 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.function.Consumer;
 
-import sql.SQL;
-import sql.UsefulReports;
-
 /**
  * CSE-3241 Database Project
  * 
@@ -28,7 +25,7 @@ public class Main {
      */
     private static void PrintMainMenu() {
         System.out.print(
-                "Main Menu: \n(NOTE: Only Member Entity is ready for add/modify/remove/retrieve)\n\n1. Search\n2. Manage Equipment\n3. Manage Database\n4. Useful Reports\n5. Exit\nNOTE: Only member options are functional\nPlease enter the number of the option you would like to select:");
+                "Main Menu: \n(NOTE: Only Member Entity is ready for add/modify/remove/retrieve)\n\n1. Search\n2. Manage Equipment\n3. Manage Database\n4. Useful Reports\n5. Exit\n\nPlease enter the number of the option you would like to select:");
     }
 
     /**
