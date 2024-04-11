@@ -89,15 +89,13 @@ CREATE TABLE Rental (
     member INTEGER,
     pdrone INTEGER,
     ddrone INTEGER,
-    item INTEGER,
     quantity INTEGER,
     checkout TEXT,
     dep_date TEXT,
     est_arr TEXT,
     FOREIGN KEY (member) REFERENCES COMMUNITY_MEMBER(user_id),
     FOREIGN KEY (pdrone) REFERENCES DRONE(serial_no),
-    FOREIGN KEY (ddrone) REFERENCES DRONE(serial_no),
-    FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
+    FOREIGN KEY (ddrone) REFERENCES DRONE(serial_no)
 );
 
 CREATE TABLE Review (

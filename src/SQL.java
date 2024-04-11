@@ -122,12 +122,6 @@ public class SQL {
             ps.setInt(1, quantity);
             ps.setInt(2, equipmentID);
             ps.executeUpdate();
-            // tell drone it is busy
-            sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, Active);
-            ps.setInt(2, GetDrone());
-            ps.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -145,14 +139,8 @@ public class SQL {
             while (rs.next()) {
                 int ddrone = rs.getInt("ddrone");
                 int pdrone = rs.getInt("pdrone");
-                // tell drones they are free
-                sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
-                ps = conn.prepareStatement(sql);
-                ps.setString(1, Active);
-                ps.setInt(2, ddrone);
-                ps.executeUpdate();
-                ps.setInt(2, pdrone);
-                ps.executeUpdate();
+                SetDroneStatus(pdrone, Inactive);
+                SetDroneStatus(ddrone, Inactive);
                 // get equipment id
                 sql = "SELECT item FROM RentedItems WHERE rental_no = ?";
                 ps = conn.prepareStatement(sql);
@@ -168,12 +156,14 @@ public class SQL {
                 ResultSet rs3 = ps.executeQuery();
                 while (rs3.next()) {
                     int quantity = rs3.getInt("quantity");
+                    // ! FIXME this is not working
                     sql = "UPDATE Equipment SET quantity = quantity + ? WHERE serial_no = ?";
                     ps = conn.prepareStatement(sql);
                     ps.setInt(1, quantity);
                     ps.setInt(2, equipmentID);
                     ps.executeUpdate();
                 }
+                RemoveRentedItems(rentalID, pdrone);
             }
             sql = "DELETE FROM Rental WHERE rental_no = ?";
             ps = conn.prepareStatement(sql);
@@ -209,7 +199,8 @@ public class SQL {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                if (rs.getString("status") == Active) {
+                String status = rs.getString("status");
+                if (!status.equals(Active)) {
                     return rs.getInt("serial_no");
                 }
             }
@@ -233,14 +224,30 @@ public class SQL {
         return true;
     }
 
+    public static boolean RemoveRentedItems(int rental_no, int item) {
+        String sql = "DELETE FROM RentedItems WHERE rental_no = ? AND item = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setInt(1, rental_no);
+            ps.setInt(2, item);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
+    }
+
     public static boolean PopulatePickupDrone(int rentalID) {
-        String sql = "UPDATE Rental SET pdrone = ? WHERE rental_no = ?";
+        String sql = "UPDATE Rental SET pdrone = ?, dep_date = ? WHERE rental_no = ?";
         int PickupDroneID = GetDrone();
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, PickupDroneID);
-            ps.setInt(2, rentalID);
+            ps.setString(2, Utility.GetTodaysDate());
+            ps.setInt(3, rentalID);
             ps.executeUpdate();
+            SetDroneStatus(PickupDroneID, Active);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -257,10 +264,25 @@ public class SQL {
             ps.setString(2, Utility.GetEstDate());
             ps.setInt(3, rentalID);
             ps.executeUpdate();
+            // tell drone it is busy
+            SetDroneStatus(DeliveryDroneID, Active);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
         return true;
+    }
+
+    // ! FIXME This is not working as intended ???
+    public static void SetDroneStatus(int droneID, String status) {
+        String sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
+        try {
+            PreparedStatement ps = conn.prepareStatement(sql);
+            ps.setString(1, status);
+            ps.setInt(2, droneID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

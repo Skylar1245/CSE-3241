@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 
 public class Main {
     // JDBC strings
-    private static String DATABASE = "databaseV4.db";
+    private static String DATABASE = "FinalDatabase.db";
 
     public static Connection conn = null;
 
