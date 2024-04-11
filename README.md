@@ -1,6 +1,4 @@
-## Getting Started
-
-CSE-3241 Project Repo
+### CSE-3241 Project Repo
 
 ## Members
 
