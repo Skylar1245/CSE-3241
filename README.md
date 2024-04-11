@@ -7,19 +7,15 @@ CSE-3241 Project Repo
 - Kate Goertz
 - Skylar Stephens
 - Haley Bonidie
-- Gywnn Barnholtz
+- Gywn Barnholtz
 
 ## Folder Structure
 
 The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
+- `src`: the folder containing all java files
+    - `data`: the folder containing all csv files to populate an empty database to our schema
+    - `sql `: the folder containing sql code to create the database to our schema
 - `lib`: the folder to maintain dependencies
 
 Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
