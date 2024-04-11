@@ -12,6 +12,11 @@ public class SQL {
 
     public static void init(Connection newConn) {
         conn = newConn;
+        try {
+            conn.setAutoCommit(true);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static void ViewAllPersons() {
@@ -122,6 +127,7 @@ public class SQL {
             ps.setInt(1, quantity);
             ps.setInt(2, equipmentID);
             ps.executeUpdate();
+            AddRentedItems(rental_no, equipmentID);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -131,7 +137,7 @@ public class SQL {
 
     public static boolean ReturnEquipment(int rentalID) {
         String sql = "SELECT * FROM Rental WHERE rental_no = ?";
-        int equipmentID = -1;
+        int equipmentID = -1, quantity = 0;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, rentalID);
@@ -139,6 +145,7 @@ public class SQL {
             while (rs.next()) {
                 int ddrone = rs.getInt("ddrone");
                 int pdrone = rs.getInt("pdrone");
+                quantity = rs.getInt("quantity");
                 SetDroneStatus(pdrone, Inactive);
                 SetDroneStatus(ddrone, Inactive);
                 // get equipment id
@@ -150,26 +157,17 @@ public class SQL {
                     equipmentID = rs2.getInt("item");
                 }
                 // Update the quantity of the equipment
-                sql = "SELECT * FROM Equipment WHERE serial_no = ?";
+                sql = "UPDATE Equipment SET quantity = quantity + ? WHERE serial_no = ?";
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, equipmentID);
-                ResultSet rs3 = ps.executeQuery();
-                while (rs3.next()) {
-                    int quantity = rs3.getInt("quantity");
-                    // ! FIXME this is not working
-                    sql = "UPDATE Equipment SET quantity = quantity + ? WHERE serial_no = ?";
-                    ps = conn.prepareStatement(sql);
-                    ps.setInt(1, quantity);
-                    ps.setInt(2, equipmentID);
-                    ps.executeUpdate();
-                }
-                RemoveRentedItems(rentalID, pdrone);
+                ps.setInt(1, quantity);
+                ps.setInt(2, equipmentID);
+                ps.executeUpdate();
+                RemoveRentedItems(rentalID, equipmentID);
             }
             sql = "DELETE FROM Rental WHERE rental_no = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, rentalID);
             ps.executeUpdate();
-            AddRentedItems(rentalID, equipmentID);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -273,7 +271,6 @@ public class SQL {
         return true;
     }
 
-    // ! FIXME This is not working as intended ???
     public static void SetDroneStatus(int droneID, String status) {
         String sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
         try {
