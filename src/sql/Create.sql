@@ -1,3 +1,7 @@
+--
+-- Our hand-crafted SQL script to create the tables in our database. Does not include any data.
+--
+
 CREATE TABLE Warehouse (
     warehouse_address TEXT PRIMARY KEY,
     city TEXT,
