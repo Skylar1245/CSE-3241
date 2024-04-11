@@ -162,7 +162,7 @@ public class SQL {
                     equipmentID = rs2.getInt("item");
                 }
                 // Update the quantity of the equipment
-                String sql = "SELECT * FROM Equipment WHERE serial_no = ?";
+                sql = "SELECT * FROM Equipment WHERE serial_no = ?";
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1, equipmentID);
                 ResultSet rs3 = ps.executeQuery();
