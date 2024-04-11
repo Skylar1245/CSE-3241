@@ -1,9 +1,6 @@
-package sql;
 
 import java.sql.*;
 import java.util.Random;
-
-import db.Person;
 
 public class SQL {
 
@@ -99,7 +96,6 @@ public class SQL {
     // Rentals allow for 30 days of rental time
     final static int RENTAL_DURATION = 30;
 
-    // TODO this should be a transaction
     public static boolean AddRental(int equipmentID, int quantity, int userID) {
         try {
             Random rand = new Random();
@@ -138,7 +134,6 @@ public class SQL {
         return true;
     }
 
-    // TODO this should be a transaction
     public static boolean ReturnEquipment(int rentalID) {
         String sql = "SELECT * FROM Rental WHERE rental_no = ?";
         try {
@@ -157,7 +152,7 @@ public class SQL {
                 ps.executeUpdate();
                 // tell drone it is free
                 sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
-                //TODO does not update drone
+                // TODO does not update drone
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1, Available);
                 ps.setInt(2, drone);

@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import sql.SQL;
-
 public class ManageEquipment {
 
     public static void Menu(Scanner scanner) {
