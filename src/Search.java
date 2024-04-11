@@ -69,7 +69,7 @@ public class Search {
     public static Person findPerson(Scanner scanner, int id_no) {
         Utility.clearTerminal();
         Person p = SQL.SearchPersonInDB(id_no);
-        if (p.id_no != 0) {
+        if (p.id_no > 0) {
             System.out.println(p.toString());
             return p;
         }

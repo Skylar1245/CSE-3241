@@ -76,7 +76,7 @@ public class SQL {
 
     public static Person SearchPersonInDB(int id_no) {
         String sql = "SELECT * FROM Person WHERE id_no = ?";
-        Person p = new Person(0, "", "", "", "", "", false, false);
+        Person p = new Person(-1, "", "", "", "", "", false, false);
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id_no);
