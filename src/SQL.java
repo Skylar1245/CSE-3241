@@ -1,10 +1,15 @@
 
 import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class SQL {
 
     public static Connection conn = null;
+
+    public final static String Active = "active";
+    public final static String Inactive = "inactive";
 
     public static void init(Connection newConn) {
         conn = newConn;
@@ -93,22 +98,24 @@ public class SQL {
         return p;
     }
 
-    // Rentals allow for 30 days of rental time
-    final static int RENTAL_DURATION = 30;
-
     public static boolean AddRental(int equipmentID, int quantity, int userID) {
         try {
             Random rand = new Random();
             int rental_no = rand.nextInt(9999);
-            String sql = "INSERT INTO Rental(rental_no, member, drone, item, quantity, checkout, duration) VALUES(?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO Rental(rental_no, member, pdrone,ddrone, item, quantity, checkout, dep_date, est_arr) VALUES(?,?,?,?,?,?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, rental_no);
             ps.setInt(2, userID);
-            ps.setInt(3, GetDrone());
-            ps.setInt(4, equipmentID);
-            ps.setInt(5, quantity);
-            ps.setDate(6, new Date(System.currentTimeMillis()));
-            ps.setInt(7, RENTAL_DURATION);
+            ps.setNull(3, Types.INTEGER);
+            ps.setNull(4, Types.INTEGER);
+            ps.setInt(5, equipmentID);
+            ps.setInt(6, quantity);
+            // get current date and time and format
+            LocalDateTime currentDateTime = LocalDateTime.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+            String formattedDateTime = currentDateTime.format(formatter);
+            ps.setString(7, formattedDateTime);
+            ps.setNull(8, Types.CHAR);
             // Make sure to update the equipment quantity and drone availability
             if (GetQuantity(equipmentID) < quantity) {
                 System.out.println("Not enough equipment available.");
@@ -124,7 +131,7 @@ public class SQL {
             // tell drone it is busy
             sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, InUse);
+            ps.setString(1, Active);
             ps.setInt(2, GetDrone());
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -136,32 +143,36 @@ public class SQL {
 
     public static boolean ReturnEquipment(int rentalID) {
         String sql = "SELECT * FROM Rental WHERE rental_no = ?";
+        int equipmentID = -1;
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, rentalID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                int equipmentID = rs.getInt("item");
+                equipmentID = rs.getInt("item");
                 int quantity = rs.getInt("quantity");
-                int drone = rs.getInt("drone");
+                int ddrone = rs.getInt("ddrone");
+                int pdrone = rs.getInt("pdrone");
                 // Update the quantity of the equipment
                 sql = "UPDATE Equipment SET quantity = quantity + ? WHERE serial_no = ?";
                 ps = conn.prepareStatement(sql);
                 ps.setInt(1, quantity);
                 ps.setInt(2, equipmentID);
                 ps.executeUpdate();
-                // tell drone it is free
+                // tell drones they are free
                 sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
-                // TODO does not update drone
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, Available);
-                ps.setInt(2, drone);
+                ps.setString(1, Active);
+                ps.setInt(2, ddrone);
+                ps.executeUpdate();
+                ps.setInt(2, pdrone);
                 ps.executeUpdate();
             }
             sql = "DELETE FROM Rental WHERE rental_no = ?";
             ps = conn.prepareStatement(sql);
             ps.setInt(1, rentalID);
             ps.executeUpdate();
+            AddRentedItems(rentalID, equipmentID);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
@@ -191,7 +202,7 @@ public class SQL {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
-                if (rs.getInt("status") == Available) {
+                if (rs.getString("status") == Active) {
                     return rs.getInt("serial_no");
                 }
             }
@@ -201,31 +212,27 @@ public class SQL {
         return -1;
     }
 
-    public final static int Delivery = 0;
-    public final static int Pickup = 1;
-    public final static int Available = 0;
-    public final static int InUse = 1;
-
-    public static boolean AddTransport(int rentalID, int type) {
-        String sql = "INSERT INTO Transport(rental_no, departure_date, est_arrival, type) VALUES(?,?,?,?)";
+    public static boolean AddRentedItems(int rental_no, int item) {
+        String sql = "INSERT into RentedItems(rental_no, item) VALUES(?,?)";
         try {
-            String time = Long.toString(System.currentTimeMillis());
-            String estTime = Long.toString(System.currentTimeMillis() * 2);
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setInt(1, rentalID);
-            ps.setString(2, time);
-            ps.setString(3, estTime);
-            ps.setInt(4, type);
+            ps.setInt(1, rental_no);
+            ps.setInt(2, item);
             ps.executeUpdate();
-            // tell drone it is busy now
-            sql = "UPDATE Drone SET status = ? WHERE serial_no = ?";
-            ps = conn.prepareStatement(sql);
-            ps.setInt(1, InUse);
-            ps.setInt(2, GetDrone());
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             return false;
         }
+        return true;
+    }
+
+    public static boolean PopulatePickupDrone() {
+
+        return true;
+    }
+
+    public static boolean PopulateDeliveryDrone() {
+
         return true;
     }
 }

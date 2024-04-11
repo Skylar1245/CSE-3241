@@ -4,7 +4,7 @@ public class ManageDatabase {
 
     private static void PrintOptions() {
         System.out.print(
-                "\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
+                "\n1. Member ONLY WORKING OPTION\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
     }
 
     public static void Menu(Scanner scanner) {
@@ -32,8 +32,8 @@ public class ManageDatabase {
      */
     public static void EditMenu(Scanner scanner) {
         Utility.clearTerminal();
-        System.out.print(
-                "Edit Entry Menu\n1. Member\n2. Drone\n3. Equipment\n4. Order\n5. Asset Repair\n6. Review\n7. Review\n8. Employee\n\nPlease enter the number of the option you would like to select:");
+        System.out.print("Edit Entry Menu");
+        PrintOptions();
 
         String userInput = scanner.nextLine();
         int userChoice = Integer.parseInt(userInput);

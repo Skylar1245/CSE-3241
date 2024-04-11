@@ -47,9 +47,11 @@ CREATE TABLE Inventory (
 
 CREATE TABLE Drone (
     serial_no INTEGER PRIMARY KEY,
+    name STRING,
     weight_cap TEXT,
     dist_auto TEXT,
     max_speed INTEGER,
+    status INTEGER,
     FOREIGN KEY (serial_no) REFERENCES INVENTORY(serial_no)
 );
 
