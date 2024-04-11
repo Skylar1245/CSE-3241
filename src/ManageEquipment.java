@@ -70,7 +70,7 @@ public class ManageEquipment {
         String confirmation = scanner.nextLine();
         Utility.clearTerminal();
         if (confirmation.equalsIgnoreCase("Y")) {
-            if (SQL.PopulateDeliveryDrone()) {
+            if (SQL.PopulateDeliveryDrone(rentalID)) {
                 System.out.println("Delivery scheduled successfully!");
             }
         } else {
@@ -87,7 +87,7 @@ public class ManageEquipment {
         String confirmation = scanner.nextLine();
         Utility.clearTerminal();
         if (confirmation.equalsIgnoreCase("Y")) {
-            if (SQL.PopulatePickupDrone()) {
+            if (SQL.PopulatePickupDrone(rentalID)) {
                 System.out.println("Pickup scheduled successfully!");
             }
         } else {

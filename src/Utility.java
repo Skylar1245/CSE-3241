@@ -1,3 +1,6 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Holds general utility methods
  */
@@ -62,5 +65,22 @@ public class Utility {
             return false;
         }
         return true;
+    }
+
+    public static String GetTodaysDate() {
+        // get current date and time and format
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        String formattedDateTime = currentDateTime.format(formatter);
+        return formattedDateTime;
+    }
+
+    public static String GetEstDate() {
+        // get current date and time and format
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        currentDateTime = currentDateTime.plusDays(7);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        String formattedDateTime = currentDateTime.format(formatter);
+        return formattedDateTime;
     }
 }
