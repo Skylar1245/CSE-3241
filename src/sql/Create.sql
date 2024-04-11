@@ -85,12 +85,16 @@ CREATE TABLE Order (
 CREATE TABLE Rental (
     rental_no INTEGER PRIMARY KEY,
     member INTEGER,
-    drone INTEGER,
+    pdrone INTEGER,
+    ddrone INTEGER,
     item INTEGER,
     quantity INTEGER,
     checkout TEXT,
+    dep_date TEXT,
+    est_arr TEXT,
     FOREIGN KEY (member) REFERENCES COMMUNITY_MEMBER(user_id),
-    FOREIGN KEY (drone) REFERENCES DRONE(serial_no),
+    FOREIGN KEY (pdrone) REFERENCES DRONE(serial_no),
+    FOREIGN KEY (ddrone) REFERENCES DRONE(serial_no),
     FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
 );
 
@@ -114,10 +118,10 @@ CREATE TABLE Repair (
     FOREIGN KEY (employee) REFERENCES EMPLOYEE(emp_id)
 );
 
-CREATE TABLE Transport (
-    drone INTEGER,
-    equipment INTEGER,
-    PRIMARY KEY (drone, equipment),
-    FOREIGN KEY (drone) REFERENCES DRONE(serial_no),
+CREATE TABLE RentedItems (
+    rental_no INTEGER,
+    item INTEGER,
+    PRIMARY KEY (rental_no, item),
+    FOREIGN KEY (rental_no) REFERENCES Rental(rental_no),
     FOREIGN KEY (equipment) REFERENCES EQUIPMENT(serial_no)
 );
