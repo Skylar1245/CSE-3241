@@ -17,13 +17,18 @@ The workspace contains a java standard source folder `src` where all project `.j
 
 ## File Descriptions
 
-Within the `src` folder there are many `.java` files
-
-- `Main.java`: this is the program entry point
-- `ManageDatabase.java`: this provides methods to add/remove/edit entities
-- `ManageEquipment.java`: this provides methods to rent/return equipment as well as schedule deliveries/pickups
-- `Person.java`: this is a data class to allow easy java manipulation of our entity
-- `Search.java`: this provides methods to search entities
-- `SQL.java`: this provides methods to interact with the database
-- `UsefulReports.java`: this provides reports based on the requirements in checkpoint 4: Useful Reports
-- `Utility.java`: this provides utility methods to prevent SQL injection as well as keep the text based app terminal clean
+- within `data`
+    - all `csv` files to populate the database, filenames correspond with table names
+- within `sql`
+    - `Create.sql` our hand typed database creation file, does not populate the tables
+    - `CreateEmptyDB.sql` SQLiteStudio generated creation file, does not populate the tables
+    - `CreateFullDB.sql` SQLiteStudio generated creation file, fully populates the database
+- within `src`
+    - `Main.java`: this is the program entry point
+    - `ManageDatabase.java`: this provides methods to add/remove/edit entities
+    - `ManageEquipment.java`: this provides methods to rent/return equipment as well as schedule deliveries/pickups
+    - `Person.java`: this is a data class to allow easy java manipulation of our entity
+    - `Search.java`: this provides methods to search entities
+    - `SQL.java`: this provides methods to interact with the database
+    - `UsefulReports.java`: this provides reports based on the requirements in checkpoint 4: Useful Reports
+    - `Utility.java`: this provides utility methods to prevent SQL injection as well as keep the text based app terminal clean
