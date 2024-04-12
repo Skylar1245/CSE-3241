@@ -1,3 +1,7 @@
+--
+-- Our hand-crafted SQL script to create the tables in our database. Does not include any data.
+--
+
 CREATE TABLE Warehouse (
     warehouse_address TEXT PRIMARY KEY,
     city TEXT,
@@ -41,7 +45,6 @@ CREATE TABLE Inventory (
     warranty_exp TEXT,
     manufacturer TEXT,
     inventory_location TEXT,
-    inventory_name TEXT,
     FOREIGN KEY (manufacturer) REFERENCES MANUFACTURER(cname) FOREIGN KEY (inventory_location) REFERENCES WAREHOUSE(warehouse_address)
 );
 
@@ -89,15 +92,13 @@ CREATE TABLE Rental (
     member INTEGER,
     pdrone INTEGER,
     ddrone INTEGER,
-    item INTEGER,
     quantity INTEGER,
     checkout TEXT,
     dep_date TEXT,
     est_arr TEXT,
     FOREIGN KEY (member) REFERENCES COMMUNITY_MEMBER(user_id),
     FOREIGN KEY (pdrone) REFERENCES DRONE(serial_no),
-    FOREIGN KEY (ddrone) REFERENCES DRONE(serial_no),
-    FOREIGN KEY (item) REFERENCES EQUIPMENT(serial_no)
+    FOREIGN KEY (ddrone) REFERENCES DRONE(serial_no)
 );
 
 CREATE TABLE Review (

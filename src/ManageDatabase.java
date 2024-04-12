@@ -171,7 +171,13 @@ public class ManageDatabase {
         String email = scanner.nextLine();
         System.out.print("id Number: ");
         int id = Utility.toInt(scanner.nextLine());
-        ;
+        // Clean inputs
+        if (!Utility.checkStringInput(email) || !Utility.checkStringInput(fname) || !Utility.checkStringInput(lname)
+                || !Utility.checkStringInput(address) || !Utility.checkStringInput(phone)
+                || !Utility.checkStringInput(Integer.toString(id))) {
+            System.out.println("Invalid input. Please try again.");
+            AddMember(scanner);
+        }
         Utility.clearTerminal();
         System.out.println("Please review the following information:");
         System.out.println("First Name: " + fname + "\nLast Name: " + lname + "\nAddress: " + address + "\nPhone: "
@@ -200,11 +206,16 @@ public class ManageDatabase {
      */
     private static void DeleteMember(Scanner scanner) {
         System.out.println("Please enter the member's ID:");
-        String personID = scanner.nextLine();
+        int personID = Utility.toInt(scanner.nextLine());
+        //Clean input
+        if (!Utility.checkNumericInput(personID)) {
+            System.out.println("Invalid input. Please try again.");
+            DeleteMember(scanner);
+        }
         System.out.print("Are you sure you want to delete member with ID: " + personID + "? (Y/N): ");
         String confirm = scanner.nextLine();
         if (confirm.equalsIgnoreCase("Y")) {
-            boolean r = SQL.RemovePersonFromDB(Utility.toInt(personID));
+            boolean r = SQL.RemovePersonFromDB(personID);
             if (r) {
                 System.out.println("Member with ID: " + personID + " has been deleted.");
             } else {
@@ -219,6 +230,11 @@ public class ManageDatabase {
         System.out.print("Please enter the member's ID:");
         String id = scanner.nextLine();
         int id_no = Utility.toInt(id);
+        //clean input 
+        if (!Utility.checkNumericInput(id_no)) {
+            System.out.println("Invalid input. Please try again.");
+            EditMember(scanner);
+        }
         Utility.clearTerminal();
         Person p = Search.findPerson(scanner, id_no);
         System.out.print(
