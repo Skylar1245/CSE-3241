@@ -57,7 +57,7 @@ public class UsefulReports {
      * @param id
      */
     public static void SeeRentedItemsByID(int id) {
-        String sql = "SELECT * FROM Rental WHERE member = ?";
+        String sql = "SELECT R.member as MemberID, COUNT(rental_no) as numRentals FROM Rental as R WHERE member = 1829;";
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
@@ -72,33 +72,14 @@ public class UsefulReports {
         }
     }
 
-    /**
-     * Find the most popular item in the database (use the renting time of the item
-     * and number of times the item has been rented out to calculate) (see query
-     * from Checkpoint #4)
-     */
-    public static void FindPopularItem() {
-        String sql = "SELECT Inventory.Serial_No, SUM(Rental.Duration) AS Total_duration, COUNT(Rental.Rental_no) FROM Inventory, Rental WHERE Inventory.Serial_No = Rental.Item OR Inventory.Serial_No = Rental.Drone GROUP BY Inventory.Serial_No ORDER BY Total_Duration";
-
-        try {
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                System.out.println(
-                        "Serial No: " + rs.getInt("Serial_No") + " Total Duration: " + rs.getInt("Total_duration")
-                                + " Number of Rentals: " + rs.getInt("COUNT(Rental.Rental_no)"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    
 
     /**
      * Find the most frequent equipment manufacturer in the database (i.e. the one
      * who has had the most rented units) (see query from Checkpoint #4)
      */
     public static void FindPopularManufacturer() {
-        String sql = "SELECT Manufacturer.Cname, COUNT (Rental.Rental_no) AS Num_Rentals FROM Manufacturer Rental WHERE Manufacturer.Cname = Inventory.Serial_No AND Inventory.manufacturer = Manufacturer.Cname GROUP BY Manufacturer_Cname ORDER BY Num_Rentals DESC";
+        String sql = "SELECT Manufacturer.Cname, COUNT (Rental.Rental_no) AS Num_Rentals FROM Manufacturer, Rental, Inventory WHERE Manufacturer.Cname = Inventory.Serial_No AND Inventory.manufacturer = Manufacturer.cname GROUP BY Manufacturer.cname ORDER BY Num_Rentals DESC;";
 
         try {
             PreparedStatement ps = conn.prepareStatement(sql);
