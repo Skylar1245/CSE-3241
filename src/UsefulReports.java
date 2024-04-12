@@ -30,7 +30,7 @@ public class UsefulReports {
             }
             SeeRentedItemsByID(id);
         } else if (option == 2) {
-            FindPopularItem();
+            return;
         } else if (option == 3) {
             FindPopularManufacturer();
         } else if (option == 4) {
