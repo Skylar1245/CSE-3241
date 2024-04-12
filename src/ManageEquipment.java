@@ -31,6 +31,12 @@ public class ManageEquipment {
         int quantity = Utility.toInt(scanner.nextLine());
         System.out.print("Please enter the User ID of the person renting the equipment:");
         int userID = Utility.toInt(scanner.nextLine());
+        // Clean input
+        if (!Utility.checkNumericInput(equipmentID) || !Utility.checkNumericInput(quantity)
+                || !Utility.checkNumericInput(userID)) {
+            System.out.println("Invalid input. Please try again.");
+            return;
+        }
         Utility.clearTerminal();
         System.out.print("Equipment Serial Number: " + equipmentID + "\nQuantity: " + quantity
                 + "\nUser ID: " + userID + "\n\nIs the above information correct? (Y/N): ");
@@ -50,6 +56,11 @@ public class ManageEquipment {
         System.out.print("Please enter the Rental Number:");
         int rentalID = Utility.toInt(scanner.nextLine());
         Utility.clearTerminal();
+        // Clean input
+        if (!Utility.checkNumericInput(rentalID)) {
+            System.out.println("Invalid input. Please try again.");
+            return;
+        }
         System.out.print("Rental Number: " + rentalID + "\n\nIs the above information correct? (Y/N): ");
         String confirmation = scanner.nextLine();
         Utility.clearTerminal();
@@ -65,6 +76,11 @@ public class ManageEquipment {
         System.out.println("Schedule Delivery:");
         System.out.print("Please enter the Rental Number:");
         int rentalID = Utility.toInt(scanner.nextLine());
+        // Clean input
+        if (!Utility.checkNumericInput(rentalID)) {
+            System.out.println("Invalid input. Please try again.");
+            return;
+        }
         Utility.clearTerminal();
         System.out.print("Rental Number: " + rentalID + "\n\nIs the above information correct? (Y/N): ");
         String confirmation = scanner.nextLine();
@@ -82,6 +98,11 @@ public class ManageEquipment {
         System.out.println("Schedule Pickup:");
         System.out.print("Please enter the Rental Number:");
         int rentalID = Utility.toInt(scanner.nextLine());
+        // Clean input
+        if (!Utility.checkNumericInput(rentalID)) {
+            System.out.println("Invalid input. Please try again.");
+            return;
+        }
         Utility.clearTerminal();
         System.out.print("Rental Number: " + rentalID + "\n\nIs the above information correct? (Y/N): ");
         String confirmation = scanner.nextLine();

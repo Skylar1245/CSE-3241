@@ -41,11 +41,8 @@ public class Utility {
      * @param input
      * @return
      */
-    public static boolean checkNumericInput(String input) {
-        if (input == null || input.isEmpty()) {
-            return false;
-        }
-        if (!input.chars().allMatch(Character::isDigit)) {
+    public static boolean checkNumericInput(int input) {
+        if (input < 0) {
             return false;
         }
         return true;
@@ -79,7 +76,7 @@ public class Utility {
         // get current date and time and format
         LocalDateTime currentDateTime = LocalDateTime.now();
         currentDateTime = currentDateTime.plusDays(7);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String formattedDateTime = currentDateTime.format(formatter);
         return formattedDateTime;
     }
