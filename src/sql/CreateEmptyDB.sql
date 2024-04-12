@@ -1,9 +1,7 @@
 --
--- File generated with SQLiteStudio v3.4.4 on Thu Apr 11 19:43:28 2024
+-- File generated with SQLiteStudio v3.4.4 on Fri Apr 12 11:10:47 2024
 --
 -- Text encoding used: System
---
--- Creates our Database without any data in it
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
@@ -79,7 +77,6 @@ CREATE TABLE IF NOT EXISTS Inventory (
     warranty_exp       TEXT,
     manufacturer       TEXT,
     inventory_location TEXT,
-    inventory_name     TEXT,
     FOREIGN KEY (
         manufacturer
     )

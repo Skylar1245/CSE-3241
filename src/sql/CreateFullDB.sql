@@ -1,9 +1,7 @@
 --
--- File generated with SQLiteStudio v3.4.4 on Thu Apr 11 19:46:14 2024
+-- File generated with SQLiteStudio v3.4.4 on Fri Apr 12 11:12:00 2024
 --
 -- Text encoding used: System
---
--- Creates our Database with data in it
 --
 PRAGMA foreign_keys = off;
 BEGIN TRANSACTION;
@@ -31,7 +29,7 @@ INSERT INTO Community_Member (
                                  '27-Sep-21',
                                  53,
                                  'active'
-                            );
+                             );
 
 INSERT INTO Community_Member (
                                  user_id,
@@ -394,7 +392,7 @@ INSERT INTO Drone (
                       '66',
                       '11',
                       40,
-                      'active'
+                      'inactive'
                   );
 
 INSERT INTO Drone (
@@ -462,7 +460,7 @@ INSERT INTO Drone (
                       '34',
                       '14',
                       33,
-                      'active'
+                      'inactive'
                   );
 
 INSERT INTO Drone (
@@ -530,7 +528,7 @@ INSERT INTO Drone (
                       '81',
                       '27',
                       59,
-                      'active'
+                      'inactive'
                   );
 
 INSERT INTO Drone (
@@ -947,7 +945,7 @@ INSERT INTO Equipment (
                           57,
                           14,
                           9,
-                          80
+                          199
                       );
 
 INSERT INTO Equipment (
@@ -968,7 +966,7 @@ INSERT INTO Equipment (
                           35,
                           16,
                           1,
-                          56
+                          62
                       );
 
 INSERT INTO Equipment (
@@ -1346,7 +1344,7 @@ INSERT INTO Equipment (
                           49,
                           14,
                           7,
-                          40
+                          50
                       );
 
 
@@ -1359,7 +1357,6 @@ CREATE TABLE IF NOT EXISTS Inventory (
     warranty_exp       TEXT,
     manufacturer       TEXT,
     inventory_location TEXT,
-    inventory_name     TEXT,
     FOREIGN KEY (
         manufacturer
     )
@@ -1377,8 +1374,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           101042,
@@ -1387,8 +1383,7 @@ INSERT INTO Inventory (
                           2023,
                           '29-Jun-23',
                           'Curabitur Egestas Inc.',
-                          '126-5311 Vitae Ave',
-                          'Swift'
+                          '126-5311 Vitae Ave'
                       );
 
 INSERT INTO Inventory (
@@ -1398,8 +1393,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           125073,
@@ -1408,8 +1402,7 @@ INSERT INTO Inventory (
                           2024,
                           '20-Dec-23',
                           'Vel Convallis LLP',
-                          '8511 Mollis Road',
-                          'Celestia'
+                          '8511 Mollis Road'
                       );
 
 INSERT INTO Inventory (
@@ -1419,8 +1412,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           149854,
@@ -1429,8 +1421,7 @@ INSERT INTO Inventory (
                           2023,
                           '5-Jul-23',
                           'Curabitur Egestas Inc.',
-                          '467-406 Eget Rd.',
-                          'Serenity'
+                          '467-406 Eget Rd.'
                       );
 
 INSERT INTO Inventory (
@@ -1440,8 +1431,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           158238,
@@ -1450,8 +1440,7 @@ INSERT INTO Inventory (
                           2000,
                           '18-Oct-24',
                           'Elit Corporation',
-                          '1017 Felis. Street',
-                          'Aurora'
+                          '1017 Felis. Street'
                       );
 
 INSERT INTO Inventory (
@@ -1461,8 +1450,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           210544,
@@ -1471,8 +1459,7 @@ INSERT INTO Inventory (
                           2024,
                           '5-Oct-23',
                           'Nisl Quisque Fringilla Incorporated',
-                          '395-4478 Egestas Rd.',
-                          'Solaris'
+                          '395-4478 Egestas Rd.'
                       );
 
 INSERT INTO Inventory (
@@ -1482,8 +1469,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           221915,
@@ -1492,8 +1478,7 @@ INSERT INTO Inventory (
                           2009,
                           '14-Mar-25',
                           'Ligula Elit Pretium Limited',
-                          'Ap #400-6347 Ultricies Street',
-                          'Comet'
+                          'Ap #400-6347 Ultricies Street'
                       );
 
 INSERT INTO Inventory (
@@ -1503,8 +1488,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           282897,
@@ -1513,8 +1497,7 @@ INSERT INTO Inventory (
                           2023,
                           '31-Oct-23',
                           'Eget Magna Corporation',
-                          'Ap #354-9665 Neque. Road',
-                          'Nimbus'
+                          'Ap #354-9665 Neque. Road'
                       );
 
 INSERT INTO Inventory (
@@ -1524,8 +1507,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           289774,
@@ -1534,8 +1516,7 @@ INSERT INTO Inventory (
                           2017,
                           '18-Jul-24',
                           'Rutrum Foundation',
-                          'Ap #647-1432 At Ave',
-                          'Celestia'
+                          'Ap #647-1432 At Ave'
                       );
 
 INSERT INTO Inventory (
@@ -1545,8 +1526,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           337409,
@@ -1555,8 +1535,7 @@ INSERT INTO Inventory (
                           2024,
                           '5-Oct-27',
                           'Ullamcorper Eu Industries',
-                          '382-9072 Euismod Rd.',
-                          'Serenity'
+                          '382-9072 Euismod Rd.'
                       );
 
 INSERT INTO Inventory (
@@ -1566,8 +1545,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           360798,
@@ -1576,8 +1554,7 @@ INSERT INTO Inventory (
                           2008,
                           '20-Mar-24',
                           'Ac Mattis Velit LLP',
-                          'Ap #647-1432 At Ave',
-                          'Swift'
+                          'Ap #647-1432 At Ave'
                       );
 
 INSERT INTO Inventory (
@@ -1587,8 +1564,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           361271,
@@ -1597,8 +1573,7 @@ INSERT INTO Inventory (
                           2011,
                           '13-Aug-24',
                           'Lorem Luctus Ut Foundation',
-                          '773-1631 Gravida Road',
-                          'Neptune'
+                          '773-1631 Gravida Road'
                       );
 
 INSERT INTO Inventory (
@@ -1608,8 +1583,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           362722,
@@ -1618,8 +1592,7 @@ INSERT INTO Inventory (
                           2006,
                           '7-Sep-24',
                           'Tellus Institute',
-                          'Ap #355-7867 Luctus Av.',
-                          'Blaze'
+                          'Ap #355-7867 Luctus Av.'
                       );
 
 INSERT INTO Inventory (
@@ -1629,8 +1602,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           397884,
@@ -1639,8 +1611,7 @@ INSERT INTO Inventory (
                           2005,
                           '16-Jun-23',
                           'Etiam LLC',
-                          'Ap #355-7867 Luctus Av.',
-                          'Phoenix'
+                          'Ap #355-7867 Luctus Av.'
                       );
 
 INSERT INTO Inventory (
@@ -1650,8 +1621,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           405242,
@@ -1660,8 +1630,7 @@ INSERT INTO Inventory (
                           2012,
                           '3-Mar-25',
                           'Lorem Luctus Ut Foundation',
-                          'Ap #400-6347 Ultricies Street',
-                          'Orion'
+                          'Ap #400-6347 Ultricies Street'
                       );
 
 INSERT INTO Inventory (
@@ -1671,8 +1640,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           438157,
@@ -1681,8 +1649,7 @@ INSERT INTO Inventory (
                           2001,
                           '24-Jun-27',
                           'Lorem Luctus Ut Foundation',
-                          '773-1631 Gravida Road',
-                          'Tempest'
+                          '773-1631 Gravida Road'
                       );
 
 INSERT INTO Inventory (
@@ -1692,8 +1659,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           485234,
@@ -1702,8 +1668,7 @@ INSERT INTO Inventory (
                           2007,
                           '18-Aug-23',
                           'Suspendisse Tristique Neque Limited',
-                          '382-9072 Euismod Rd.',
-                          'Falcon'
+                          '382-9072 Euismod Rd.'
                       );
 
 INSERT INTO Inventory (
@@ -1713,8 +1678,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           504064,
@@ -1723,8 +1687,7 @@ INSERT INTO Inventory (
                           2025,
                           '18-Jan-24',
                           'Ligula Aenean Ltd',
-                          '842-1503 Molestie Avenue',
-                          'Swift'
+                          '842-1503 Molestie Avenue'
                       );
 
 INSERT INTO Inventory (
@@ -1734,8 +1697,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           504073,
@@ -1744,8 +1706,7 @@ INSERT INTO Inventory (
                           2024,
                           '9-Aug-24',
                           'Curabitur Egestas Inc.',
-                          '126-5311 Vitae Ave',
-                          'Voyager'
+                          '126-5311 Vitae Ave'
                       );
 
 INSERT INTO Inventory (
@@ -1755,8 +1716,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           518809,
@@ -1765,8 +1725,7 @@ INSERT INTO Inventory (
                           2024,
                           '7-Jul-23',
                           'Nisl Quisque Fringilla Incorporated',
-                          '6614 Sodales. St.',
-                          'Draco'
+                          '6614 Sodales. St.'
                       );
 
 INSERT INTO Inventory (
@@ -1776,8 +1735,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           537605,
@@ -1786,8 +1744,7 @@ INSERT INTO Inventory (
                           2011,
                           '21-Oct-24',
                           'Lorem Luctus Ut Foundation',
-                          '784-201 Nullam Avenue',
-                          'Nova'
+                          '784-201 Nullam Avenue'
                       );
 
 INSERT INTO Inventory (
@@ -1797,8 +1754,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           538085,
@@ -1807,8 +1763,7 @@ INSERT INTO Inventory (
                           2023,
                           '13-Jun-23',
                           'Ligula Aenean Ltd',
-                          'Ap #354-9665 Neque. Road',
-                          'Voyager'
+                          'Ap #354-9665 Neque. Road'
                       );
 
 INSERT INTO Inventory (
@@ -1818,8 +1773,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           549540,
@@ -1828,8 +1782,7 @@ INSERT INTO Inventory (
                           2023,
                           '15-Dec-23',
                           'Proin Vel Associates',
-                          '395-4478 Egestas Rd.',
-                          'Nova'
+                          '395-4478 Egestas Rd.'
                       );
 
 INSERT INTO Inventory (
@@ -1839,8 +1792,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           562336,
@@ -1849,8 +1801,7 @@ INSERT INTO Inventory (
                           2017,
                           '29-Sep-26',
                           'Lorem Luctus Ut Foundation',
-                          'Ap #567-6935 Orci Av.',
-                          'Voyager'
+                          'Ap #567-6935 Orci Av.'
                       );
 
 INSERT INTO Inventory (
@@ -1860,8 +1811,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           575629,
@@ -1870,8 +1820,7 @@ INSERT INTO Inventory (
                           2005,
                           '10-Sep-27',
                           'Lorem Luctus Ut Foundation',
-                          'P.O. Box 810 6352 Semper Avenue',
-                          'Solaris'
+                          'P.O. Box 810 6352 Semper Avenue'
                       );
 
 INSERT INTO Inventory (
@@ -1881,8 +1830,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           681299,
@@ -1891,8 +1839,7 @@ INSERT INTO Inventory (
                           2005,
                           '10-Jan-27',
                           'Elit Corporation',
-                          '1017 Felis. Street',
-                          'Nimbus'
+                          '1017 Felis. Street'
                       );
 
 INSERT INTO Inventory (
@@ -1902,8 +1849,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           682571,
@@ -1912,8 +1858,7 @@ INSERT INTO Inventory (
                           2023,
                           '6-Aug-23',
                           'Orci Ltd',
-                          'Ap #529-5778 A Road',
-                          'Zephyr'
+                          'Ap #529-5778 A Road'
                       );
 
 INSERT INTO Inventory (
@@ -1923,8 +1868,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           688100,
@@ -1933,8 +1877,7 @@ INSERT INTO Inventory (
                           2010,
                           '11-Jul-26',
                           'Lorem Luctus Ut Foundation',
-                          'P.O. Box 810 6352 Semper Avenue',
-                          'Draco'
+                          'P.O. Box 810 6352 Semper Avenue'
                       );
 
 INSERT INTO Inventory (
@@ -1944,8 +1887,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           695517,
@@ -1954,8 +1896,7 @@ INSERT INTO Inventory (
                           2024,
                           '11-Dec-23',
                           'Curabitur Egestas Inc.',
-                          '654-258 Nunc Av.',
-                          'Comet'
+                          '654-258 Nunc Av.'
                       );
 
 INSERT INTO Inventory (
@@ -1965,8 +1906,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           740249,
@@ -1975,8 +1915,7 @@ INSERT INTO Inventory (
                           2024,
                           '10-Apr-24',
                           'Curabitur Egestas Inc.',
-                          '6614 Sodales. St.',
-                          'Tempest'
+                          '6614 Sodales. St.'
                       );
 
 INSERT INTO Inventory (
@@ -1986,8 +1925,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           752591,
@@ -1996,8 +1934,7 @@ INSERT INTO Inventory (
                           2004,
                           '13-Jul-26',
                           'Lorem Luctus Ut Foundation',
-                          '784-201 Nullam Avenue',
-                          'Comet'
+                          '784-201 Nullam Avenue'
                       );
 
 INSERT INTO Inventory (
@@ -2007,8 +1944,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           806507,
@@ -2017,8 +1953,7 @@ INSERT INTO Inventory (
                           2024,
                           '31-Oct-23',
                           'Eget Magna Corporation',
-                          'Ap #529-5778 A Road',
-                          'Aurora'
+                          'Ap #529-5778 A Road'
                       );
 
 INSERT INTO Inventory (
@@ -2028,8 +1963,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           814386,
@@ -2038,8 +1972,7 @@ INSERT INTO Inventory (
                           2024,
                           '24-Jun-24',
                           'Elit Corporation',
-                          '8015 Donec Street',
-                          'Zephyr'
+                          '8015 Donec Street'
                       );
 
 INSERT INTO Inventory (
@@ -2049,8 +1982,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           817019,
@@ -2059,8 +1991,7 @@ INSERT INTO Inventory (
                           2024,
                           '26-Feb-24',
                           'Proin Vel Associates',
-                          '842-1503 Molestie Avenue',
-                          'Comet'
+                          '842-1503 Molestie Avenue'
                       );
 
 INSERT INTO Inventory (
@@ -2070,8 +2001,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           840678,
@@ -2080,8 +2010,7 @@ INSERT INTO Inventory (
                           2020,
                           '3-Aug-23',
                           'Sodales Elit Limited',
-                          'Ap #672-2383 Praesent Street',
-                          'Zephyr'
+                          'Ap #672-2383 Praesent Street'
                       );
 
 INSERT INTO Inventory (
@@ -2091,8 +2020,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           849481,
@@ -2101,8 +2029,7 @@ INSERT INTO Inventory (
                           2004,
                           '8-May-25',
                           'Lorem Luctus Ut Foundation',
-                          'Ap #567-6935 Orci Av.',
-                          'Swift'
+                          'Ap #567-6935 Orci Av.'
                       );
 
 INSERT INTO Inventory (
@@ -2112,8 +2039,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           918979,
@@ -2122,8 +2048,7 @@ INSERT INTO Inventory (
                           2023,
                           '29-Feb-24',
                           'Curabitur Egestas Inc.',
-                          '654-258 Nunc Av.',
-                          'Neptune'
+                          '654-258 Nunc Av.'
                       );
 
 INSERT INTO Inventory (
@@ -2133,8 +2058,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           938085,
@@ -2143,8 +2067,7 @@ INSERT INTO Inventory (
                           2012,
                           '7-Feb-27',
                           'Commodo Hendrerit Institute',
-                          'Ap #672-2383 Praesent Street',
-                          'Aurora'
+                          'Ap #672-2383 Praesent Street'
                       );
 
 INSERT INTO Inventory (
@@ -2154,8 +2077,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           944418,
@@ -2164,8 +2086,7 @@ INSERT INTO Inventory (
                           2024,
                           '17-May-24',
                           'Curabitur Egestas Inc.',
-                          '467-406 Eget Rd.',
-                          'Phoenix'
+                          '467-406 Eget Rd.'
                       );
 
 INSERT INTO Inventory (
@@ -2175,8 +2096,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           966552,
@@ -2185,8 +2105,7 @@ INSERT INTO Inventory (
                           2024,
                           '15-May-24',
                           'Elit Corporation',
-                          '8015 Donec Street',
-                          'Celestia'
+                          '8015 Donec Street'
                       );
 
 INSERT INTO Inventory (
@@ -2196,8 +2115,7 @@ INSERT INTO Inventory (
                           inventory_year,
                           warranty_exp,
                           manufacturer,
-                          inventory_location,
-                          inventory_name
+                          inventory_location
                       )
                       VALUES (
                           984720,
@@ -2206,8 +2124,7 @@ INSERT INTO Inventory (
                           2024,
                           '12-Apr-24',
                           'Iaculis Aliquet Corp.',
-                          '8511 Mollis Road',
-                          'Swift'
+                          '8511 Mollis Road'
                       );
 
 
@@ -2894,23 +2811,6 @@ INSERT INTO Person (
                        'Vega',
                        '8658 S. Foxrun Dr. Long Beach, NY 11561',
                        'darvictor@sambalrica.xyz'
-                   );
-
-INSERT INTO Person (
-                       id_no,
-                       phone,
-                       fname,
-                       lname,
-                       person_address,
-                       email
-                   )
-                   VALUES (
-                       2003,
-                       '1111111111',
-                       'Skylar',
-                       'Stephens',
-                       'testing db rd',
-                       'newEmail@gmail.com'
                    );
 
 INSERT INTO Person (
@@ -3651,9 +3551,9 @@ INSERT INTO Rental (
                        289774,
                        289774,
                        3,
-                       '4/28/24',
+                       '2023-02-15',
                        '5/19/24',
-                       '5/27/24'
+                       '2023-02-20'
                    );
 
 INSERT INTO Rental (
@@ -3672,9 +3572,9 @@ INSERT INTO Rental (
                        681299,
                        681299,
                        1,
-                       '4/25/24',
-                       '5/16/24',
-                       '5/24/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-20'
                    );
 
 INSERT INTO Rental (
@@ -3693,9 +3593,9 @@ INSERT INTO Rental (
                        158238,
                        158238,
                        1,
-                       '4/11/24',
-                       '5/2/24',
-                       '5/10/24'
+                       '2023-02-12',
+                       '2023-02-15',
+                       '2023-02-21'
                    );
 
 INSERT INTO Rental (
@@ -3714,9 +3614,9 @@ INSERT INTO Rental (
                        485234,
                        485234,
                        6,
-                       '4/21/24',
-                       '5/12/24',
-                       '5/20/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-17'
                    );
 
 INSERT INTO Rental (
@@ -3735,9 +3635,9 @@ INSERT INTO Rental (
                        362722,
                        362722,
                        4,
-                       '4/17/24',
-                       '5/8/24',
-                       '5/16/24'
+                       '2023-02-10',
+                       '2023-02-15',
+                       '2023-02-11'
                    );
 
 INSERT INTO Rental (
@@ -3756,9 +3656,9 @@ INSERT INTO Rental (
                        405242,
                        405242,
                        12,
-                       '4/19/24',
-                       '5/10/24',
-                       '5/18/24'
+                       '2023-02-16',
+                       '2023-02-15',
+                       '2023-02-22'
                    );
 
 INSERT INTO Rental (
@@ -3777,9 +3677,9 @@ INSERT INTO Rental (
                        562336,
                        562336,
                        4,
-                       '4/23/24',
-                       '5/14/24',
-                       '5/22/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-30'
                    );
 
 INSERT INTO Rental (
@@ -3798,9 +3698,9 @@ INSERT INTO Rental (
                        938085,
                        938085,
                        3,
-                       '4/16/24',
-                       '5/7/24',
-                       '5/15/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-19'
                    );
 
 INSERT INTO Rental (
@@ -3819,9 +3719,9 @@ INSERT INTO Rental (
                        337409,
                        337409,
                        2,
-                       '4/29/24',
-                       '5/20/24',
-                       '5/28/24'
+                       '2023-02-20',
+                       '2023-02-15',
+                       '2023-02-31'
                    );
 
 INSERT INTO Rental (
@@ -3840,9 +3740,9 @@ INSERT INTO Rental (
                        289774,
                        289774,
                        3,
-                       '4/13/24',
-                       '5/4/24',
-                       '5/12/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-17'
                    );
 
 INSERT INTO Rental (
@@ -3861,9 +3761,9 @@ INSERT INTO Rental (
                        537605,
                        537605,
                        5,
-                       '4/22/24',
-                       '5/13/24',
-                       '5/21/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-16'
                    );
 
 INSERT INTO Rental (
@@ -3882,9 +3782,9 @@ INSERT INTO Rental (
                        397884,
                        397884,
                        2,
-                       '4/18/24',
-                       '5/9/24',
-                       '5/17/24'
+                       '2023-02-25',
+                       '2023-02-15',
+                       '2023-02-28'
                    );
 
 INSERT INTO Rental (
@@ -3903,9 +3803,9 @@ INSERT INTO Rental (
                        360798,
                        360798,
                        10,
-                       '4/15/24',
-                       '5/6/24',
-                       '5/14/24'
+                       '2023-02-25',
+                       '2023-02-15',
+                       '2023-02-29'
                    );
 
 INSERT INTO Rental (
@@ -3924,9 +3824,9 @@ INSERT INTO Rental (
                        221915,
                        221915,
                        1,
-                       '4/12/24',
-                       '5/3/24',
-                       '5/11/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-14'
                    );
 
 INSERT INTO Rental (
@@ -3945,9 +3845,9 @@ INSERT INTO Rental (
                        221915,
                        221915,
                        1,
-                       '4/27/24',
-                       '5/18/24',
-                       '5/26/24'
+                       '2023-02-16',
+                       '2023-02-15',
+                       '2023-02-18'
                    );
 
 INSERT INTO Rental (
@@ -3966,9 +3866,9 @@ INSERT INTO Rental (
                        849481,
                        849481,
                        4,
-                       '4/20/24',
-                       '5/11/24',
-                       '5/19/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-27'
                    );
 
 INSERT INTO Rental (
@@ -3987,9 +3887,9 @@ INSERT INTO Rental (
                        158238,
                        158238,
                        1,
-                       '4/24/24',
-                       '5/15/24',
-                       '5/23/24'
+                       '2023-02-17',
+                       '2023-02-15',
+                       '2023-02-20'
                    );
 
 INSERT INTO Rental (
@@ -4008,9 +3908,9 @@ INSERT INTO Rental (
                        337409,
                        337409,
                        20,
-                       '4/14/24',
-                       '5/5/24',
-                       '5/13/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-26'
                    );
 
 INSERT INTO Rental (
@@ -4029,9 +3929,9 @@ INSERT INTO Rental (
                        688100,
                        688100,
                        1,
-                       '4/26/24',
-                       '5/17/24',
-                       '5/25/24'
+                       '2023-02-04',
+                       '2023-02-15',
+                       '2023-02-15'
                    );
 
 INSERT INTO Rental (
@@ -4050,9 +3950,30 @@ INSERT INTO Rental (
                        938085,
                        938085,
                        2,
-                       '4/30/24',
-                       '5/21/24',
-                       '5/29/24'
+                       '2023-02-15',
+                       '2023-02-15',
+                       '2023-02-25'
+                   );
+
+INSERT INTO Rental (
+                       rental_no,
+                       member,
+                       pdrone,
+                       ddrone,
+                       quantity,
+                       checkout,
+                       dep_date,
+                       est_arr
+                   )
+                   VALUES (
+                       999,
+                       6975,
+                       688100,
+                       688100,
+                       4,
+                       '2023-02-06',
+                       '2023-02-15',
+                       '2023-02-15'
                    );
 
 
@@ -4252,6 +4173,15 @@ INSERT INTO RentedItems (
                         VALUES (
                             977,
                             984720
+                        );
+
+INSERT INTO RentedItems (
+                            rental_no,
+                            item
+                        )
+                        VALUES (
+                            999,
+                            125073
                         );
 
 

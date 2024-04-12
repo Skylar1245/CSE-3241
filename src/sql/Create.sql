@@ -45,7 +45,6 @@ CREATE TABLE Inventory (
     warranty_exp TEXT,
     manufacturer TEXT,
     inventory_location TEXT,
-    inventory_name TEXT,
     FOREIGN KEY (manufacturer) REFERENCES MANUFACTURER(cname) FOREIGN KEY (inventory_location) REFERENCES WAREHOUSE(warehouse_address)
 );
 
